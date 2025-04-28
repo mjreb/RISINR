@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jsrsasign/10.6.0/jsrsasign-all-min.js"></script>
+    </head>
+    <body>
+        <h2 style="text-align:center">Administración de usuarios</h2>
+        <div class="flex-container">
+            <div style="flex-grow: 3; background-color: #fff"></div>
+            <div style="flex-grow: 3; background-color: #fff"></div>
+            <div style="flex-grow: 3; background-color: #fff"></div> 
+            <button id="btnCatUSRtbl" onclick="CrudUSR(event)" class="button button1 fa fa-plus" style="display:block">Consulta catálogo</button>            
+            <button id="btnAdtUsrtbl" onclick="CrudUSR(event)" class="button button1 fa fa-plus" style="display:block">Nuevo</button>    
+            <button id="btnEdtUsrtbl" onclick="CrudUSR(event)" class="button button1 fa fa-pencil" style="display:none">Editar</button>
+            <button id="btnDelUsrtbl" onclick="CrudUSR(event)" class="button button1 fa fa-trash" style="display:none">Borrar</button>  
+        </div>  
+        <br>
+        <div id="showDataUser" class="scrollcell"></div>  
+        <!--dialogo para editar los registros de los usuarios-->
+        <div class="modalUSUARIOS">
+            <div class="modalUSUARIOS-content">
+                <form id="USUARIOS">
+                    <input type="hidden" id="USRtblid" name="USRtblid" value="-1">
+                    <input type="hidden" id="USRrowid" name="USRrowid" value="-1">
+                    <h1 style="color:black; text-align: center">***Usuarios****</h1>
+                    <hr>
+                    <p style='color:black; text-align: left; padding: 10px 0 0 20px;'><b>Nombre</b></p>
+                    <input placeholder="INGRESE NOMBRE DE USUARIO" name="uname" type="text" id="uname" autocomplete="off">
+                    <p style='color:black; text-align: left; padding: 0 0 0 20px;'><b>A. Paterno</b></p>
+                    <input placeholder="INGRESE APELLIDO PATERNO" name="apaterno" type="text" id="apaterno" autocomplete="off">
+                    <p style='color:black; text-align: left; padding: 0 0 0 20px;'><b>A. Materno</b></p>                        
+                    <input placeholder="INGRESE APELLIDO MATERNO" name="amaterno" type="text" id="amaterno" autocomplete="off">
+                    <p style='color:black; text-align: left; padding: 0 0 0 20px;'><b>CURP</b></p>
+                    <input placeholder="INGRESE CURP" name="curp" type="text" id="curp" autocomplete="off">                        
+                    <div id="perfilcreate" style='color:black; text-align: left; padding: 10px 0 0 20px;'>
+                        <b>Area de adscripción: </b> 
+                        <select style='color:black; font-size: 14px; padding: 6px' name="perf2" id="perf2">
+                            <option value="0">Seleccione Área</option>
+                        </select> 
+                        <b>Estado</b>            
+                        <label><input type="radio" name="estado" value="1" checked>Activo</label>            
+                        <label><input type="radio" name="estado" value="2">Bloqueado</label>
+                        <label><input type="radio" name="estado" value="3">Suspendido</label>
+                    </div>
+
+                    <div id="perfilupdate" style='color:black; text-align: left; padding: 0 0 0 10px;'>
+                      <p style='color:black; text-align: left;' id="perfil"></p>
+                    </div>
+
+                     <div id="showDataRol" style=" height: 140px; overflow: auto; padding: 10px 20px 0 20px;"></div>
+                 
+                </form>   
+                <div class="flex-container">
+                    <button id="actualizaUSUARIO"  onclick="CrudUSR(event)"  class="button button1" style="flex-basis:200px; font-size: 15px;">Actualizar Registro</button>
+                    <button id="nuevoUSUARIO"  onclick="CrudUSR(event)"  class="button button1" style="flex-basis:200px; font-size: 15px;">Agregar Registro</button>
+                    <button id="cancelarUSUARIO" onclick="CrudUSR(event)" class="button button1" style="flex-basis:200px; font-size: 15px;">Cancelar</button> 
+                </div> 
+            </div>
+        </div>        
+    </body>
+</html>

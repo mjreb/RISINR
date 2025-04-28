@@ -1,0 +1,275 @@
+* {
+	margin: 0;
+	padding: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+
+body {
+	font-family: sans-serif;
+	text-align: center;
+	background-color: #F0F0F0;
+}
+
+main {
+	height: 100%;
+}
+
+section {
+	height: 100%;
+	position: relative;
+	width: 100%;
+}
+
+header {
+	background-color: #17202A;
+	padding: 1em 2em;
+	position: fixed;
+	width: 100%;
+	z-index: 100;
+}
+
+#logo {
+	float: left;
+	margin-left: 1.85em;
+}
+
+#logo a {
+	color: rgba(255,255,255,1);
+	font-size: 1.8rem;
+	font-weight: 500;
+	letter-spacing: 0.3rem;
+	padding: 0.5em 1em;
+	text-decoration: none;
+	text-transform: uppercase;
+	transition: all 1s;
+}
+
+nav {
+	float: right;
+	text-align: right;
+	width: 70%;
+}
+
+ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+ul li {
+	display: inline-block;
+	padding: 0.5em 1em;
+}
+
+ul li a {
+	color: rgba(255,255,255,1);
+	font-size: 0.95rem;
+	font-weight: 500;
+	letter-spacing: 0.3rem;
+	padding: 0.5em 1em;
+	text-decoration: none;
+	text-transform: uppercase;
+	transition: all 1s;
+}
+
+ul li a:hover,
+ul li a:active {
+	color: rgba(0,210,100,1);
+}
+
+	/* SLIDER */
+/*
+div {
+	height: 100%;
+	position: absolute;
+	width: 100%;
+	margin: 0 auto;
+	top: 1em;
+}
+
+.slider{
+	height:  100%;
+	width: 100%;
+	max-width: 1480px;
+	margin: auto;
+	overflow: hidden;
+}
+
+.slider ul {
+	display: flex;
+	padding: 0;
+	width: 400%;
+	animation: slide 12s infinite;
+	animation-direction: alternate;
+}
+
+.slider li {
+	width: 100%;
+	list-style: none;
+}
+
+.slider img {
+	width: 100%;
+}
+
+@keyframes slide {
+	0% {margin-left: 0;}
+	35% {margin-left: 0;}
+
+	40% {margin-left: -150%;}
+	60% {margin-left: -150%;}
+
+	65% {margin-left: -280%;}
+	100% {margin-left: -280%;}
+}
+
+#home {
+	background-color: rgba(0,0,0,0.3);
+}
+
+#home h2 {
+	color: rgb(255,255,255,.9);
+	font-size: 2.5rem;
+	margin: 0;
+	position: relative;
+	top: 40%;
+}
+
+#home h2 span {
+	color: rgba(0,210,100,.7);
+	text-transform: uppercase;
+}
+
+#home p {
+	color: rgba(255,255,255,.7);
+	font-size: 0.95rem;
+	margin: 0;
+	padding: 0 20%;
+	position: relative;
+	top: 50%;
+}
+*/
+#login {
+	top: 1.2rem;
+	bottom: 1.2rem;
+}
+
+#login h3 {
+	text-transform: uppercase;
+	font-family: sans-serif;
+	color: #0B2027;
+	font-size: 2em;
+	padding: 3em 0 0 0;
+}
+
+#login .formulario {
+	background-color: #FAFAFF;
+	width: 500px;
+	margin: 20px auto;
+	padding: 20px;
+	border-radius: 5px;
+	margin-top: 4em;
+}
+
+#login .formulario .letras{
+	text-align: left;
+}
+
+#login .formulario input {
+	display: block;
+}
+
+#login .formulario input[type="text"],
+#login .formulario input[type="password"] {
+	width: 100%;
+	padding: 20px;
+	margin-bottom: 20px;
+	border-radius: 3px;
+	border:1px solid #226fc1;
+	font-family: Arial;
+	font-size: 16px;
+}
+
+#login .formulario input[type="text"]:focus,
+#login .formulario input[type="password"]:focus {
+	border: 2px solid #4fb560;
+}
+
+#login .formulario button {
+	width: 200px;
+	margin:0 auto;
+	background: none;
+	border: 1px solid #4fb560;
+	color:#4fb560;
+	padding: 10px;
+	cursor: pointer;
+	font-size: 16px;
+	border-radius: 3px;
+}
+
+#login .formulario button:hover {
+	background: #4fb560;
+	color: #fff;
+} 
+
+#direccion {
+	height: 5em;
+	padding: 2em;
+}
+
+#direccion h3 {
+	color: #0B2027;
+	font-size: 2em;
+	padding: 1.8em 0 0 0;
+}
+
+#direccion p{
+	color: #0B2027;
+    width: 100%;
+    text-align: center;
+    padding: 1em 0 1em 0;
+}
+
+footer {
+	width: 100%;
+	heigth: 2em;
+	background: #0B2027;
+	text-align: center;
+	color: #fff;
+	padding: 2em 2em;
+	bottom: 0;
+	position: absolute;
+}
+
+
+
+/* Center the loader */
+#loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

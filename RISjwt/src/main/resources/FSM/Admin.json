@@ -1,0 +1,44 @@
+[
+  {
+    "estado": [
+      {
+        "id": "INGRESAR",
+        "vista": "index.html",
+        "accedo": "login"
+      }
+    ],
+    "mensaje": [
+      {
+        "id": "ADM_ADD_USR",
+        "accion": "rest/UsersManager/Create",
+        "nextState": "ADMUSRS"
+      },
+      {
+        "id": "ADM_QRY_USR",
+        "accion": "rest/UsersManager/Read",
+        "nextState": "ADMUSRS"
+      },
+      {
+        "id": "ADM_EDT_USR",
+        "accion": "rest/UsersManager/Update",
+        "nextState": "ADMUSRS"
+      }
+    ]
+  },
+  {
+    "estado": [
+      {
+        "id": "ADMDATA",
+        "vista": "index.html",
+        "accedo": "login"
+      }
+    ],
+    "mensaje": [
+      {
+        "id": "USR_UPD_DATA",
+        "accion": "rest/UsersManager/Update",
+        "nextState": "ADMDATA"
+      }
+    ]
+  }
+]

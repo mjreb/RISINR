@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h2 style="text-align:center">Administración de Equipo del RIS</h2>
+        <div class="flex-container">
+            <div style="flex-grow: 3; background-color: #fff"></div>
+            <div style="flex-grow: 3; background-color: #fff"></div>
+            <div style="flex-grow: 3; background-color: #fff"></div> 
+            <button id="btnCatEqptbl" onclick="barraBotonesEQP(event)" class="button button1 fa fa-plus" style="display:block"> Consulta catálogo</button>
+            <button id="btnAddEqptbl" onclick="barraBotonesEQP(event)" class="button button1 fa fa-plus" style="display:block"> Nuevo</button>
+            <button id="btnEdtEqptbl" onclick="barraBotonesEQP(event)" class="button button1 fa fa-pencil" style="display:none"> Editar</button>
+            <button id="btnDelEqptbl" onclick="barraBotonesEQP(event)" class="button button1 fa fa-trash" style="display:none"> Borrar</button>                         
+        </div>  
+        <br>
+        <div id="showDataEQP" class="scrollcell"></div> 
+        
+            <!--dialogo para editar los registros de los perfiles-->            
+            <div class="modalEquipoRIS">
+                <div class="modalEquipoRIS-content" id="mymodalEquipoRIS">
+                <div id="mymodalEquipoRISheader" style="cursor: move; color:white;">.</div>                    
+                    <form id="formEquipoRIS">
+                        <input type="hidden" id="tblid" name="tblid" value="-1">
+                        <input type="hidden" id="rowid" name="rowid" value="-1">
+                        <h1 style="color:#2179FC; text-align: center" >Control Equipo</h1>
+                        <hr>
+                        <br>
+                        <!--p style='color:black; text-align: left; padding: 0 0 0 20px;'><b>ID</b></p> 
+                        <p style='color:black; text-align: left; padding: 0 0 0 20px' >0</p>
+                        <input type="text" id="profileid" name="profileid" style="margin: 0px 0px 0px 0.9%; width:90%;" disabled-->                        
+                        
+                        <p id="secSerie" style='color:black; text-align: left; padding: 10px 0 0 20px;'>
+                          <b>N. Serie:</b>
+                          <input type="text" id="nserEQP" name="nserEQP" placeholder="INGRESE NÚMERO DE SERIE DE EQUIPO"  style="margin: 0px 0px 0px 0.9%; width:90%;"  autocomplete="off">                        
+                        </p>                        
+                        <p style='color:black; text-align: left; padding: 10px 0 0 20px;'>
+                          <b>Nombre:</b>
+                          <input type="text" id="nomEQP" name="nomEQP" placeholder="INGRESE NOMBRE EQUIPO"  style="margin: 0px 0px 0px 0.9%; width:90%;" autocomplete="off">                        
+                        </p>
+                        <p style='color:black; text-align: left; padding: 10px 0 0 20px;'>
+                            <b>Marca:</b>
+                            <input type="text" id="marcaEQP" name="marcaEQP" placeholder="INGRESE MARCA"  style="margin: 0px 0px 0px 2.0%; width:90%;"  autocomplete="off">                             
+                        </p>
+                        <p style='color:black; text-align: left; padding: 10px 0 0 20px;'>
+                            <b>Modelo:</b> 
+                            <input type="text" id="modeloEQP" name="modeloEQP" placeholder="INGRESE MODELO"  style="margin: 0px 0px 0px 1.0%; width:90%;" autocomplete="off">                             
+                        </p>  
+                        <p style='color:black; text-align: left; padding: 10px 0 0 20px; font-size: 14px;'>
+                            <b>Modalidad: </b> 
+                             <!--Corresponden a la tabla de Modalidades (hacer tabla), llenarlo con el contenido de la tabla -->
+                            <select style='color:black; font-size: 14px; padding: 6px' name="modalEqp" id="modalEqp" onchange="updatePKSEqp(event)">
+                                <option id="mod0" value="0">Seleccione modalidad</option>
+                                <option id="mod1" value="RX">RX</option>
+                                <option id="mod2" value="TC">TC</option>
+                                <option id="mod3" value="MN">MN</option>
+                                <option id="mod4" value="MR">MR</option>
+                                <option id="mod5" value="US">US</option>
+                                <option id="mod6" value="OT">OT</option>
+                            </select>                    
+                            <input type="text" style="margin: 0px 0px 0px 0.5%; width:26%; height: 30px;" id="idmod" name="idmod"  autocomplete="off">
+                            <b>Área: </b> 
+                            <!--Corresponden a la tabla de áreas, llenarlo con el contenido de la tabla -->
+                            <select name="areEqp" id="areEqp" style='color:black; font-size: 14px; padding: 6px; width:21%;' onchange="updatePKSEqp(event)">
+                                <option id="area0" value="0">Seleccione área</option>
+                                <option id="area1" value="1">Rayos X</option>
+                                <option id="area2" value="2">Resonancia magnética</option>
+                                <option id="area3" value="3">Tomografía computada</option>
+                                <option id="area4" value="4">Médicina Núclear</option>
+                                <option id="area5" value="5">Desarrollo Tecnológico</option>
+                                <option id="area6" value="6">Ultrasonido</option>
+                                <option id="area7" value="7">Densitometria</option>
+                                <option id="area8" value="8">Subdirección de Rehabilitación</option>
+                            </select>
+                            <input type="text" id="idarea" name="idarea" style="margin: 0px 0px 0px 0.5%; width:21%; height: 30px;" autocomplete="off">
+                        </p>  
+                        <p style='color:black; text-align: left; padding: 10px 0 0 20px; font-size: 14px;'>
+                            <b>Estado: </b> 
+                            <select name="edoEqp" id="edoEqp" style='color:black; font-size: 14px; padding: 6px; margin: 0px 0px 0px 1.9%; width:20%;' onchange="updatePKSEqp(event)">
+                                <option id="edo0" value="0">Seleccione estado</option>
+                                <option id="edo1" value="Disponible">Disponible</option>
+                                <option id="edo2" value="Fuera de servicio">Fuera de servicio</option>
+                                <option id="edo3" value="Mantenimiento preventivo">Mantenimiento preventivo</option>
+                                <option id="edo4" value="Mantenimiento Correctivo">Mantenimiento Correctivo</option>
+                            </select>
+                            <input type="text" id="idedo" name="idedo" style="margin: 0px 0px 0px 0.5%; width:26%; height: 30px;"  autocomplete="off" >                            
+                        </p>  
+                        <!--p style='color:black; text-align: left; padding: 10px 0 0 20px; font-size: 14px;'>
+                            <b>Fecha de instalación: </b> 
+                            <input type="date" id="fechaIns" name="fechaIns" style="margin: 0px 0px 0px 0.5%; width:26%; height: 30px;">                            
+                        </p>  
+                        <p style='color:black; text-align: left; padding: 10px 0 0 20px; font-size: 14px;'>
+                            <b>Fecha de actulización: </b> 
+                            <input type="date" id="fechaUp" name="fechaUp" style="margin: 0px 0px 0px 0.5%; width:26%; height: 30px;">                            
+                        </p-->                        
+                       <br>                        
+                       <hr>
+                       <br>
+                    </form>		
+                    <div class="flex-container">
+                      <button id="updateEQPRIS"   onclick="listenermodalEQPRIS(event)" class="button button1" style="flex-basis:200px; font-size: 15px;">Actualizar Registro</button>
+                      <button id="agregarEQPRIS"  onclick="listenermodalEQPRIS(event)" class="button button1" style="flex-basis:200px; font-size: 15px;">Agregar Registro</button>                          
+                      <button id="cancelarEQPRIS" onclick="listenermodalEQPRIS(event)" class="button button1" style="flex-basis:200px; font-size: 15px;">Cancelar</button>                        
+                    </div>                      
+                </div>
+            </div>         
+    </body>
+</html>

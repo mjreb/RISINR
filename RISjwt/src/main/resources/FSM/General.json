@@ -1,0 +1,39 @@
+[
+  {
+    "estado": [
+      {
+        "id": "login",
+        "vista": "/login.html",
+        "accedo": "validausr"
+      }
+    ],
+    "mensaje": [
+      {
+        "id": "Ingresar",
+        "accion": "rest/USRSesionRST/login",
+        "nextState": "INGRESAR"
+      },
+      {
+        "id": "Nuevo Usuario",
+        "accion": "agregar",
+        "nextState": "Screen3"
+      }
+    ]
+  },
+  {
+    "estado": [
+      {
+        "id": "INGRESAR",
+        "vista": "index.html",
+        "accedo": "login"
+      }
+    ],
+    "mensaje": [
+      {
+        "id": "exit",
+        "accion": "rest/USRSesionRST/logout",
+        "nextState": "login"
+      }
+    ]
+  }
+]

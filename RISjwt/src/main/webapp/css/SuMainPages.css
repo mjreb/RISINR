@@ -1,0 +1,363 @@
+* {
+	margin: 0;
+	padding: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+body {
+	background: #FFFFFF; /* Color de fondo de la pagina*/
+	font-family: 'Open Sans', sans-serif;	/* Tipo de letra, principal 'Open Sans', secundaria 'sans-serif' */
+}
+/* HEADER */
+
+header {
+	/*padding: 20px;*/
+	width: 100%;
+	height: 72px;
+	background-color: #fff;
+	display: flex;
+	flex-direction: row;
+}
+
+/* PERFIL DE USUARIO */
+.contenedor-perfil {
+	width: 30%;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	background-color: #FFF;  
+}
+
+/* Texto: nombre de usuario */
+.contenedor-perfil p {
+	padding: 10px;
+	color: #fff;
+}
+
+/* LOGO */
+
+/* Texto */
+.contenedor-logo {
+	width: 70%;
+	padding-top: 7px;
+	padding-bottom: 7px;
+	display: flex; /* Activamos Flexbox */
+	flex-direction: row; /* Hacemos que los elementos hijos se coloquen en fila */
+	justify-content: center; /* Centramos los elementos hijos */
+}
+
+/* Texto */
+.contenedor-logo p {
+	color: rgba(88,142,255,.5);
+	text-shadow: 1px 1px #2E8B57;
+	padding: 12px;
+	font-size: 25px;
+}
+
+/* LOGOUT */
+.contenedor-logout {
+	width: 10%;
+}
+
+/* Boton de salir */
+.contenedor-logout #salir {
+	width: 100%;
+	height: 100%;
+	background-color: #666;
+	border: none;
+	color: #fff;
+	font-size: 15px;
+}
+
+/* Al pasar apuntador sobre el boton salir */
+.contenedor-logout #salir:hover {
+	background-color: #f1f1f1; /* Cambia fondo al pasar el raton*/
+}
+
+/* Style the tab */
+.tab {
+    overflow: hidden;
+    border: 1px solid #BCBCBC;
+    /*background-color: #f1f1f1;*/
+    background-color:rgba(88,142,255,0.5);
+    /*height: 40px;*/
+}
+/* Style the buttons inside the tab */
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #ddd;
+    /*background-color: #BCBCBC;*/
+}
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: #ccc;
+}
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+.flex-container {
+  display: flex;
+  /*justify-content: center;*/
+  background-color: rgba(255,255,255,.5);
+  /*background-color: rgba(128,128,128,0.3);*/
+  align-items: stretch;
+}
+
+.flex-container > div {
+  background-color: #f1f1f1;
+  /*background-color: rgba(255,255,255,.5);*/
+  width: 15px;
+  margin: 5px;
+  /*text-align: left;*/
+  text-align: center;
+  line-height: 20px;
+  font-size: 20px;
+}
+
+.areadespliegue{
+  display: flex;
+  width: 100%;
+  /*padding-top: 7px;
+  padding-bottom: 7px;*/
+  display: flex; /* Activamos Flexbox */
+  flex-direction: row; /* Hacemos que los elementos hijos se coloquen en fila */
+}
+.areabusqueda{
+  display: flex; /* Activamos Flexbox */
+  flex-direction: row; /* Hacemos que los elementos hijos se coloquen en fila*/ 
+  height: 20px;
+}
+.areagrafica{
+  display: flex;
+  width: 75%;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  flex-direction: column; /* Hacemos que los elementos hijos se coloquen en fila */
+  justify-content: center;
+}
+
+.areainfocentrales{
+  width:25%;
+  display: flex; /* Activamos Flexbox */
+  flex-direction: column; /* Hacemos que los elementos hijos se coloquen en fila */    
+}
+
+table {
+    border-collapse: collapse;
+    border: 2px solid rgb(200, 200, 200);
+    letter-spacing: 1px;
+    /*font-family: sans-serif;*/
+    font-size: .8rem;
+}
+
+.button {
+  background-color: rgba(88,142,255,.5);
+  color: white;  
+  border: none;
+  outline: none;
+  border-radius: 8px;  
+  padding: 6px 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.button1 {
+  background-color: rgba(88,142,255,.5); 
+  color: black; 
+  border: 2px solid white;
+}
+
+.button1:hover {
+  background-color: red;
+  color: white;
+}
+
+caption {
+    padding: 10px;
+    /*caption-side: bottom;*/
+    caption-side:top;
+}
+
+table, th, td {
+    margin:5px 0; 
+    border:solid 1px #333;
+    border: 1px solid rgb(190, 190, 190);	
+    padding:5px 4px;
+    font:14px Verdana;
+    text-align: left;
+}
+
+th {
+   font-weight:bold;
+}
+
+
+#TEstados tr:nth-child(even) {
+  background-color: #eee;
+  /*background-color: #fff;*/
+}
+#TEstados tr:nth-child(odd) {
+  background-color: #fff;
+}
+#TEstados th {
+  color: white;
+  background-color: black;
+}
+
+/* Full-width input fields */
+input[type=text], input[type=password] , input[type=email]{
+    width: 95%;
+    padding: 5px;
+    margin: 5px 0 10px 0;
+    /*border: none;*/
+    border: 1px solid #000;
+    background: #f1f1f1;
+}
+input[type=text]:focus, input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+/* Style the footer */
+footer {
+  /*position: fixed;*/
+  background-color: rgba(88,142,255,.5);
+  color: black;
+  text-align: center;
+  /*width: 100%;
+  height: 20px;
+  display: flex;*/
+  /*flex-direction: row;*/
+}
+
+.scrollcell {
+  overflow: auto;
+  height: 400px; /* hancho por default para las tablas*/
+}
+
+/* Dialogo modal*/
+.modalAREAS{
+  display: none;
+  /*position: fixed;*/ 
+  /*position: sticky;*/
+  /*position: relative;*/
+  position: absolute;
+  padding-top: 80px;
+  left: 0; 
+  top: 0;
+  width: 100%;
+  height: 100%; 
+  /*background-color: rgb(0, 0, 0);*/
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modalAREAS-content {
+  position: relative; 
+  background-color: white;
+  padding: 20px; 
+  margin: auto; 
+  width: 40%; 
+  text-align: center;
+  border-radius: 10px;
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+/* Dialogo modal*/
+.modalPERFILES,.modalEquipoRIS {
+  display: none;
+  /*position: fixed;*/ 
+  /*position: sticky;*/
+  /*position: relative;*/
+  position: absolute;
+  padding-top: 80px;
+  left: 0; 
+  top: 0;
+  width: 100%;
+  height: 100%; 
+  /*background-color: rgb(0, 0, 0);*/
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modalPERFILES-content,.modalEquipoRIS-content {
+  position: relative; 
+  background-color: white;
+  padding: 20px; 
+  margin: auto; 
+  width: 40%; 
+  text-align: center;
+  border-radius: 10px;
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+/* Dialogo modal*/
+.modalUSUARIOS {
+  display: none;
+ /*position: fixed;*/ 
+  /*position: sticky;*/
+  /*position: relative;*/
+  position: absolute;
+  padding-top: 80px;
+  left: 0; 
+  top: 0;
+  width: 100%;
+  height: 100%; 
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modalUSUARIOS-content {
+  position: relative; 
+  background-color: white;
+  /*padding: 50px;*/
+  padding: 20px;
+  margin: auto; 
+  width: 45%;
+  text-align: center;
+  border-radius: 10px;
+  /*top:50%;
+  left:50%;
+  background-color: white;
+  transform: translate(-50%, -50%);
+  width: 45%;
+  padding: 50px;
+  position: absolute;*/
+    /*max-width: 50%;*/
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:0.3}
+}
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:0.3}
+}
+

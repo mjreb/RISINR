@@ -1,0 +1,357 @@
+* {
+		margin: 0;
+		padding: 0;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+
+	body {
+		background: #F0F0F0;
+		font-family: 'Open Sans', sans-serif;	
+	}
+	
+	/* LOADER */
+
+	/* Center the loader */
+	#loader {
+	  position: absolute;
+	  left: 50%;
+	  top: 50%;
+	  z-index: 1;
+	  width: 150px;
+	  height: 150px;
+	  margin: -75px 0 0 -75px;
+	  border: 16px solid #f3f3f3;
+	  border-radius: 50%;
+	  border-top: 16px solid #3498db;
+	  width: 120px;
+	  height: 120px;
+	  -webkit-animation: spin 2s linear infinite;
+	  animation: spin 2s linear infinite;
+	}
+	
+	@-webkit-keyframes spin {
+	  0% { -webkit-transform: rotate(0deg); }
+	  100% { -webkit-transform: rotate(360deg); }
+	}
+	
+	@keyframes spin {
+	  0% { transform: rotate(0deg); }
+	  100% { transform: rotate(360deg); }
+	}
+
+	/* --- --- -- -- --- ---*/
+
+	.contenedor-principal {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.contenedor-header {
+		background: #fff;
+		width: 100%;
+		height: 100px;
+		display: flex;
+		flex-direction: row;
+	}
+
+	/* LOGO */
+
+	.logo {
+		width: 65%;
+		height: 100%;
+		padding: 10px;
+		color: #fff;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+
+	.logo img {
+		margin-left: 20px;
+	}
+
+	.logo p {
+		/*font-family: 'Crimson Text', serif;*/
+		font-weigth: 600;
+		font-size: 45px;
+		color: #2E8B57;
+		text-shadow: 1px 1px #FF0000;
+		align-self: flex-end;
+	}
+
+	/* BOTONES DE LA BARRA DE MENUS */
+
+	.menu {
+		list-style: none;
+		padding: 0;
+		width: 35%;
+		margin:20px auto;
+	}
+
+	.menu ul {
+		display: flex;
+		justify-content: flex-end;
+	}
+
+	.menu li {
+		margin-right: 50px;
+		display: inline-block;
+		text-align: center;
+	}
+
+	.menu li button {
+		color: #fff;
+		text-decoration: none;
+		display: block;
+		padding: 20px;
+		background: #04B486;
+	}
+
+	.menu li button:hover {
+		background: #58ACFA;
+	}
+
+	.contenedor-busqueda {
+		width: 100%;
+		background: #F0F0F0;
+		display: flex; /* Habilitamos FlexBox*/
+		flex-direction: row;
+		height: 100%;
+	}
+
+	/* FORMULARIO DE LA BUSQUEDA DE ESTUDIOS */
+
+	.consulta {
+		width: 25%;
+		background: #FAFAFF;
+		padding: 10px;
+		display: flex;
+		flex-direction: column;
+		transition: all 2s ease;
+	}
+	
+	.paciente-id,
+	.paciente-nombre,
+	.inicio-fecha,
+	.fin-fecha,
+	.inicio-hora,
+	.fin-hora,
+	.modalidad,
+	.boton-buscar
+	.boton-ocultar {
+		height: 40px;
+		display: flex;
+		flex-direction: row;
+		margin: 5px;
+		padding: 5px;
+		align-items: baseline;
+	}
+
+	.periodo-busqueda,
+	.horario-busqueda, 
+	.dicom-sql {
+		text-align: center;
+		height: 40px;
+		margin: 5px;
+		padding: 5px;
+	}
+
+	.texto{
+		width: 40%;
+		height: 20px;
+	}
+
+	.input-text {
+		width: 60%;
+		height: 20px;
+	}
+
+	.input-text input,
+	.input-text select,
+	.boton-buscar button,
+	.boton-ocultar button {
+		width: 100%;
+		height: 40px;
+		font-size: 14px;
+		padding: 5px;
+	}
+
+	.consulta-remota {
+		text-align: center;
+	}
+
+	.inicio-fecha input,
+	.fin-fecha input,
+	.inicio-hora input,
+	.fin-hora input {
+		text-align: center;
+	}
+
+	.boton-buscar button {
+		background: #5F9EA0;
+		color: #E0FFFF;
+	}
+	
+	.boton-buscar,
+	.boton-ocultar {
+		margin-top: 20px;
+	}
+	
+	.boton-ocultar button{
+		background: #F78181;
+		color: #FBF2EF;	
+	}
+
+	.boton-buscar button:hover{
+		background: #40E0D0;
+		color: #F0FFFF;
+	}
+	
+	.boton-ocultar button:hover{
+		background: #FE2E64;
+		color: #F0FFFF;
+	}
+
+	
+	/* RESULTADOS DE LA BUSQUEDA DE ESTUDIOS */
+	
+	
+	.resultados {
+		width: 75%;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+	}
+
+	.pacientes, 
+	.series {
+		width: 100%;
+		height: 100%;
+	}
+
+	.pacientes,
+	.series {
+		text-align: center;
+		color: #008080;
+		padding: 10px;
+	}
+
+	
+	table caption{
+		text-transform: uppercase; 
+	}
+
+	.pacientes table,
+	.series table {
+		text-transform: uppercase;
+		width: 100%;
+	}
+	
+	.pacientes table th,
+	.series table th{
+		font-size: 14px;
+		margin: 5px;  
+	}
+	
+	.par:hover,
+	.impar:hover
+	{
+		background: #F5FFFA; 
+	}
+
+	.pacientes table td button {
+		padding: 10px;
+		margin: 5px;
+	}
+
+	.pacientes table td button p{
+		text-align: left;
+	}
+
+	.pacientes table td button,
+	.estudios table td button,
+	.series table td button{
+		width: 100%;
+		height: 12px;
+		background: none;
+		border: none;
+	}
+	
+	.par {
+		background-color: #E1E1E1;
+	}
+
+	.pacientes table,
+	.resultados table {
+		border-style: solid;
+		border-collapse: collapse;
+		border-color: #2F4F4F;		
+	}
+
+	/* NUMEROS DE NAVEGACION */
+
+	.NavPacientes,
+	.NavSeries {
+		padding: 5px;
+		background: #3F9675;
+	}
+
+	.NavPacientes ul,
+	.NavSeries ul {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		list-style: none;
+	}
+
+	.NavPacientes li button:hover,
+	.NavSeries li button:hover {
+		background: #2A5343;
+		color: #fff;
+	}
+
+	.NavPacientes li button,
+	.NavSeries li button {
+		padding: 10px;
+		background: none;
+		color: #83E8C0;
+		font-size: 14px;
+		border: none;
+	}
+
+	footer {
+	width: 100%;
+	background: #0B2027;
+	text-align: center;
+	padding: 2em 0;
+	color: #fff;
+
+	}
+
+	@media screen and (max-width: 1050px) {
+		/* LOGO */
+
+		.logo img {
+			margin-left: 5px;
+		}
+
+		.logo p {
+			font-size: 35px;
+			align-self: flex-end;
+		}
+
+		.pacientes table th,
+		.estudios table th,
+		.series table th{
+			font-size: 12px;
+			margin: 3px;  
+		}
+
+		.menu li button {
+			padding: 10px;
+		}
+	}

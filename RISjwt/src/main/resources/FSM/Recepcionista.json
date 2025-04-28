@@ -1,0 +1,96 @@
+[
+  {
+    "estado": [
+      {
+        "id": "login",
+        "vista": "index.html",
+        "accedo": "http://nombreAplicacion"
+      }
+    ],
+    "mensaje": [
+      {
+        "id": "Ingresar",
+        "accion": "rest/USRSesionRST/login",
+        "nextState": "INGRESAR"
+      },
+      {
+        "id": "Actualizar pwd",
+        "accion": "rest/USRSesionRST/ActualizaPWD",
+        "nextState": "login"
+      }
+    ]
+  },
+  {
+    "estado": [
+      {
+        "id": "INGRESAR",
+        "vista": "index.html",
+        "accedo": "login"
+      }
+    ],
+    "mensaje": [
+      {
+        "id": "REC_ADD_APPOIN",
+        "accion": "rest/AppointmentManager/Create",
+        "nextState": "RECUSRS"
+      },
+      {
+        "id": "RED_QRY_APPOIN",
+        "accion": "rest/AppointmentManager/Read",
+        "nextState": "RECUSRS"
+      },
+      {
+        "id": "REC_EDT_APPOIN",
+        "accion": "rest/AppointmentManager/Update",
+        "nextState": "RECUSRS"
+      },
+      {
+        "id": "REC_QRY_WKL",
+        "accion": "rest/WorklistManager/Read",
+        "nextState": "RECUSRS"
+      },
+      {
+        "id": "REC_DEL_WKL",
+        "accion": "rest/WorklistManager/Delete",
+        "nextState": "RECUSRS"
+      },
+      {
+        "id": "REC_QRY_STDS",
+        "accion": "rest/StdManager/Read",
+        "nextState": "RECUSRS"
+      }
+    ]
+  },
+  {
+    "estado": [
+      {
+        "id": "RECDATA",
+        "vista": "index.html",
+        "accedo": "login"
+      }
+    ],
+    "mensaje": [
+      {
+        "id": "REC_UPD_DATA",
+        "accion": "rest/UsersManager/Update",
+        "nextState": "RECDATA"
+      }
+    ]
+  },
+  {
+    "estado": [
+      {
+        "id": "RECEXIT",
+        "vista": "index.html",
+        "accedo": "login"
+      }
+    ],
+    "mensaje": [
+      {
+        "id": "Salir",
+        "accion": "rest/USRSesionRST/logout",
+        "nextState": "login"
+      }
+    ]
+  }
+]

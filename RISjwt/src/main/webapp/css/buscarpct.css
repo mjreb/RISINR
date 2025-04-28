@@ -1,0 +1,275 @@
+* {
+	margin: 0;
+	padding: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+body {
+	text-transform: uppercase;
+	font-family: sans-serif;			
+	text-align: center;
+	background-color: #F0F0F0;
+}
+
+aside {
+	height: 100%;
+	float: left;
+	width: 350px;
+	position: fixed;
+	text-align: center;
+	padding: 3% 0;
+	background-color: #FAFAFF;
+}
+
+main {
+	height: 100%;
+	width: 100%;
+	margin-left: auto;
+}
+
+section {
+	padding-top: 5em;
+}
+
+header {
+	background-color: #17202A;
+	padding: 1em 2em;
+	position: fixed;
+	width: 100%;
+	z-index: 100;
+}
+
+#logo {
+	float: left;
+	margin-left: 1.85em;
+	color: #FAFAFF;
+	font-size: 2rem;
+	font-weight: 500;
+	letter-spacing: 0.3rem;
+	padding: 0.5em 1em;
+	text-decoration: none;
+	text-transform: uppercase;
+	transition: all 1s;
+}
+
+nav {
+	float: left;
+	text-align: left;
+	width: 100%;
+}
+
+ul {
+	list-style: none;
+	margin-top: 5em;
+	padding: 0;
+}
+
+ul li {
+	margin: 2em 0;
+	padding: 0.5em 1em;
+}
+
+ul li a:hover,
+ul li a:active {
+	color: rgba(0,210,100,1);
+}
+
+#busqueda,
+#historial {
+	display: inline-block;
+	justify-content: center;
+	color: #35393C;
+}
+
+#busqueda table {
+	width: 100%;
+	max-width: 1000px;
+}
+
+#busqueda #NavPaciente {
+	text-align: center;
+}
+
+#busqueda form {
+	color: #0B2027;
+	font-size: 1rem;
+	font-family: sans-serif;
+}
+
+#busqueda form table input[type="text"] {
+	width: 400px;
+	padding: 0.5em;
+	border-radius: 3px;
+	border:1px solid #226fc1;
+	font-family: Arial;
+	font-size: 16px;
+}
+
+#busqueda input[type="button"] {
+	text-transform: uppercase;
+	width: 200px;
+	margin:0 auto;
+	border: 1px solid #0B2027;
+	color: #fff;
+	padding: 10px;
+	cursor: pointer;
+	font-size: 16px;
+	border-radius: 3px;
+	background-color: #0B2027;
+}
+
+#busqueda input[type="button"]:hover {
+	background-color: #226fc1;
+	color: #fff;
+} 
+
+#busqueda #datos {
+	display: inline-table;
+}
+
+table {
+	border-color: #0B2027;
+	border-style: groove;
+	border-radius: 5px;
+	margin-bottom: 2rem; 
+}
+
+#NavPacientes {
+	border: none;
+}
+
+table caption {
+	color: #35393C;
+	font-size: 1.2rem;
+	padding-bottom: 0.5rem;
+}
+
+table th {
+	color: #35393C;
+	font-size: 0.9rem;
+	text-transform: uppercase;
+	border-bottom: 1px solid rgb(127,255,212,0.9);
+	padding: 1.3rem;
+}
+
+table td {
+	color: #35393C;
+	padding: 0.5rem;
+	border-botton: 1px solid rgb(127,255,212,0.9);
+}
+
+aside nav a,
+aside nav button {
+	color: #F0FEFD;
+	font-size: 0.95rem;
+	font-weight: 500;
+	letter-spacing: 0.3rem;
+	padding: 0.5em 1em;
+	text-decoration: none;
+	text-transform: uppercase;
+	transition: all 1s;
+}
+
+aside nav button {
+	width: 250px;
+	background: #328981;
+	border: 2px;
+	border-style: solid;
+	border-radius: 3px;
+	border-color: #2F4F4F;
+}
+
+aside nav a {
+	width: 250px;
+	background: #FA5858;
+	border: 2px;
+	border-style: solid;
+	border-radius: 3px;
+	border-color: #2F4F4F;
+}
+
+nav a:hover,
+nav button:hover {
+	color: rgba(0,210,100,1);
+	background: #050C1B;
+}
+
+#busqueda button {
+	background: none;
+	color: black;
+	border: none;
+	transition: all 1s;
+}
+
+#busqueda button:active {
+	background-color: yellow;
+	color: red;
+}
+
+#busqueda button:hover{
+	color: #0B2027;
+}
+
+#busqueda #par {
+	background-color: #E1E1E1;
+}
+
+#historial {
+	margin-left: 25%;
+}
+
+footer {
+	width: 100%;
+	background: #0B2027;
+	text-align: center;
+	padding: 2em 0;
+	color: #fff;
+}
+
+/* Center the loader */
+#loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.select {
+   height:40px;
+   overflow: hidden;
+   width: 400px;
+   position:relative;
+}
+
+select {
+	width: 400px;
+	padding: 0.5em;
+	border-radius: 3px;
+	border:1px solid #226fc1;
+	font-family: Arial;
+   font-size: 16px;
+   height: 40px;
+}
+

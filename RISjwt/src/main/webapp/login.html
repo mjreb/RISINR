@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>LOGIN PAGE</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="http://code.jquery.com/jquery-2.2.0.min.js"></script><!-- CDN de jQuery-->
+        <link rel="stylesheet" type="text/css" href="css/styleslogin.css">
+        <script src="js/Control/FSM.js"></script>
+        <script src="js/Control/loginlibs.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jsrsasign/10.6.0/jsrsasign-all-min.js"></script>
+    </head>
+
+     <body onload="nobackbutton();">
+
+        <div class="bg-img">
+            <!-- Image loader -->
+            <div id='fadelogin' style='display: none;'>
+                <img id='loaderlogin' src="img/loading.gif" alt="imgspinner"/>  
+            </div>
+            <!-- Image loader -->            
+            <form class="container" id="formulario">
+                <h1>Acceso al sistema</h1>
+                <label for="uname"><b>Usuario</b></label>
+                <input placeholder="Ingrese usuario" name="uname" required="" type="text" id="uname" onfocus="this.value=''" autocomplete="off">
+                <label for="psw"><b>Clave</b></label>
+                <input placeholder="Ingrese clave" name="psw" required="" type="password" id="psw" onfocus="this.value=''">
+                <input class="btn" type="button" value="Ingresar" onclick="logIn('login',event)">
+            </form>
+
+        </div>         
+            <!--div class="modalUSUARIOS" hidden-->
+            <div class="modalUSUARIOS">
+                <div >
+                    <h1 style="color:yellow">Seleccione el perfil de ingreso al sistema</h1>
+                </div>                
+                <div class="modalUSUARIOS-content">
+                    <form id="USUARIOS">
+                        <hr>
+                        <!--p style='color:black; text-align: left; padding: 5px 0 0 40px;'><b>Nombre de usuario</b></p-->
+                        
+                        <div id="datosuasuario" style='color:black; text-align: left; padding: 5px 0 0 40px;'>
+                            <h4 id="usuarioactivo" style="color: #5a6171">Bienvenido:</h4>
+                        </div>                         
+
+                        <p style='color:black; text-align: left; padding: 5px 0 0 40px;'><b>Perfil</b></p>
+                        <div id="perfilcreate" style='color:black; text-align: left; padding: 10px 0 0 40px;'>
+                            <select style='color:black; font-size: 16px;' name="perf2" id="perf2">
+                                <option value="0">Seleccione rol</option>
+                            </select>    
+                        </div>                         
+                        <br>
+
+                        <div class="flex-container">
+                            <!--"Ingresar", Mensaje del estado login (boton inicial) cuando el usuario tiene multiples perfiles-->
+                            <button type="button" id="guardarUSUARIOS"  onclick="activamodal('Ingresar', this.form)"  class="button button1" style="flex-basis:200px; font-size: 15px;">Ingresar al sistema</button>
+                            <button type="button" id="cancelarUSUARIOS" onclick="activamodal('Cancelar', this.form)" class="button button1" style="flex-basis:200px; font-size: 15px;">Cancelar</button> 
+                        </div>  
+                        <hr>                        
+                    </form>                    
+                </div>
+            </div>         
+         <div class="footer">
+            <footer>
+                <p>Copyrigth &copy; 2021  UAMI-LIIM, INRLGII-DDT</p>
+            </footer>  
+        </div>
+      
+    </body>
+</html>

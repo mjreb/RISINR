@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+ <bean id="usersManager"  class="com.RIS.MVC.model.DAOSpecialization.UsersManager"/>
+ <bean id="rolManager"    class="com.RIS.MVC.model.DAOSpecialization.RolManager"/>
+ <bean id="areaManager"   class="com.RIS.MVC.model.DAOSpecialization.AreaManager"/>
+ <bean id="AppointmentManager" class="com.RIS.MVC.model.DAOSpecialization.AppointmentManager"/>
+ <bean id="StudyRequestManager" class="com.RIS.MVC.model.DAOSpecialization.StudyRequestManager"/>
+ <bean id="StudiesManager" class="com.RIS.MVC.model.DAOSpecialization.StudiesManager"/>
+ <bean id="DeviceManager" class="com.RIS.MVC.model.DAOSpecialization.DeviceManager"/> 
+ 
+ <!--bean id="StudiesManager"    class="com.RIS.MVC.model.DAOSpecialization.Studies"/-->
+ 
+</beans> 

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="PesitenceREST" transaction-type="RESOURCE_LOCAL">
+    <description>RIS DB</description>
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>com.RIS.MVC.model.JPA.entities.Usuario</class>
+    <class>com.RIS.MVC.model.JPA.entities.AreaDeServicio</class>
+    <class>com.RIS.MVC.model.JPA.entities.Rol</class>
+    <class>com.RIS.MVC.model.JPA.entities.Perfil</class>
+    <class>com.RIS.MVC.model.JPA.entities.EquipoImagenologia</class>
+    <class>com.RIS.MVC.model.JPA.entities.Estudio</class>
+    <class>com.RIS.MVC.model.JPA.entities.Paciente</class>
+    <class>com.RIS.MVC.model.JPA.entities.ProtocoloEstudio</class>
+    <class>com.RIS.MVC.model.JPA.entities.EstudiosSolicitados</class>
+    <class>com.RIS.MVC.model.JPA.entities.Sesion</class>
+    <class>com.RIS.MVC.model.JPA.entities.Rol_1</class>
+    <class>com.RIS.MVC.model.JPA.entities.AsignacionEstudio</class>
+    <class>com.RIS.MVC.model.JPA.entities.Domicilio</class>
+    <class>com.RIS.MVC.model.JPA.entities.SolicitudDeEstudio</class>
+    <class>com.RIS.MVC.model.JPA.entities.AgendaDeServicio</class>
+    <class>com.RIS.MVC.model.JPA.entities.EspecialidadMedica</class>
+    <class>com.RIS.MVC.model.JPA.entities.ControlEstudios</class>
+    <class>com.RIS.MVC.model.JPA.entities.Medico</class>
+    <class>com.RIS.MVC.model.JPA.entities.Equipo</class>
+    <class>com.RIS.MVC.model.JPA.entities.Especialidad</class>
+    <class>com.RIS.MVC.model.JPA.entities.ConfiguracionRIS</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3307/RISV1"/>
+      <!--property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/RIS_INR"/-->
+      <property name="javax.persistence.jdbc.user" value="RIS_INR"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="ris2025#$"/>
+      <!--property name="javax.persistence.schema-generation.database.action" value="create"/-->
+    </properties>
+  </persistence-unit>
+</persistence>

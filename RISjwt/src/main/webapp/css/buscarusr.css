@@ -1,0 +1,163 @@
+* {
+	margin: 0;
+	padding: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+html, body {
+	height: 100%;
+	width: 100%;
+}
+
+body {
+	font-family: sans-serif;
+	text-align: center;
+	background-color: #050C1B;
+}
+
+main {
+	height: 100%;
+}
+
+section {
+	height: 100%;
+	padding: 4em 2em;
+	position: relative;
+	width: 100%;
+}
+
+header {
+	background-color: rgba(0,0,0,0.5);
+	padding: 1em 2em;
+	position: fixed;
+	width: 100%;
+	z-index: 100;
+}
+
+#logo {
+	float: left;
+	margin-left: 1.85em;
+	color: rgba(255,255,255,1);
+	font-size: 1.8rem;
+	font-weight: 500;
+	letter-spacing: 0.3rem;
+	padding: 0.5em 1em;
+	text-decoration: none;
+	text-transform: uppercase;
+	transition: all 1s;
+}
+
+nav {
+	float: right;
+	text-align: right;
+	width: 70%;
+}
+
+ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+ul li {
+	border-right: 1px solid #000;
+	display: inline-block;
+	padding: 0.5em 1em;
+}
+
+ul li a {
+	color: rgba(255,255,255,1);
+	font-size: 0.95rem;
+	font-weight: 500;
+	letter-spacing: 0.3rem;
+	padding: 0.5em 1em;
+	text-decoration: none;
+	text-transform: uppercase;
+	transition: all 1s;
+}
+
+ul li a:hover,
+ul li a:active {
+	color: rgba(0,210,100,1);
+}
+
+#busqueda {
+	text-align: center;
+	padding-top: 18rem;
+}
+
+#busqueda input[type="text"] {
+	width: 50%;
+	padding: 20px;
+	margin-bottom: 20px;
+	border-radius: 3px;
+	border:1px solid #226fc1;
+	font-family: Arial;
+	font-size: 16px;
+}
+
+#busqueda input[type="button"] {
+	width: 200px;
+	margin:0 auto;
+	background: none;
+	border: 1px solid #4fb560;
+	color:#4fb560;
+	padding: 10px;
+	cursor: pointer;
+	font-size: 16px;
+	border-radius: 3px;
+}
+
+#busqueda input[type="button"]:hover {
+	background: #4fb560;
+	color: #fff;
+} 
+
+#busqueda #usuarios {
+	display: flex;
+	justify-content: center;
+	align-self: center;
+}
+
+#busqueda #usuarios table {
+	border-color: rgb(127,255,212,0.9);
+	border-style: groove;
+	border-radius: 5px;
+}
+
+#busqueda #usuarios table th {
+	color: #fff;
+	font-size: 0.9rem;
+	text-transform: uppercase;
+	border-bottom: 1px solid rgb(127,255,212,0.9);
+	padding: 1.3rem;
+}
+
+#busqueda #usuarios table td {
+	color: rgba(255,255,255,0.7);
+	padding: 0.9rem;
+}
+
+#busqueda a {
+	color: rgba(255,255,255,1);
+	font-size: 0.95rem;
+	font-weight: 500;
+	letter-spacing: 0.3rem;
+	padding: 0.5em 1em;
+	text-decoration: none;
+	text-transform: uppercase;
+	transition: all 1s;
+}
+
+#busqueda a:hover {
+	color: rgba(0,210,100,1);
+}
+
+footer {
+	background: #0B2027;
+	text-align: center;
+	padding: 2em 0;
+	color: #fff;
+}

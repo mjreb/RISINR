@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Agenda</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="../../../css/SuMainPages.css">
+        <link rel="stylesheet" type="text/css" href="../../../css/styleslogin.css">
+        <link rel="stylesheet" type="text/css" href="../../../css/agenda.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="http://code.jquery.com/jquery-2.2.0.min.js"></script> <!-- CDN de jQuery-->  
+        <script src="../../../js/lib2.js"></script>
+        <script src="../../../js/Control/Agenda/recepcionista.js"></script>        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jsrsasign/10.6.0/jsrsasign-all-min.js"></script>
+    </head>
+    <body>
+        <section> 
+            <h2 style="text-align:center">Administración de Agenda</h2>
+            </br>  
+            <header>
+                <!--Encabezado nombre, area y rol del usuario-->
+                <div class="contenedor-perfil">
+                    <label id="encabezadonombre"></label>
+                    </br>
+                    <label id="encabezadoarea">&nbsp;Área:</label>
+                    </br>
+                    <label id="encabezadorol">&nbsp;Rol:</label>
+                </div>
+                <div class="contenedor-logo">
+                    <!--img src="../img/logo.png" alt="logoex" height="65" width="250"-->                        
+                    <p></p>
+                </div>
+         
+            </header>          
+                    <!--div class="contenedor">
+                        <div class="contenedor-header">Consulta</div>
+                        <div class="contenedor-contenido">
+                            <div class="flex-container">
+                                <form id="form_paciente">
+                                    <div class="contenedor-formulario" id="filtro_numero">
+                                        <label class="label_registro">Número de Registro:</label>
+                                        <input type="text" id="noregistro" name="noregistro"/>
+                                    </div>
+                                    <div class="contenedor-formulario" id="filtro_nombre">
+                                        <label class="label_registro">Nombre:</label>
+                                        <input type="text" id="nombrepaciente" name="nombrepaciente"/>
+                                    </div>
+                                    <div class="contenedor-formulario" id="filtro_paterno">
+                                        <label class="label_registro">Apellido Paterno:</label>
+                                        <input type="text" id="apellidopaternopaciente" name="apellidopaternopaciente"/>
+                                    </div>
+                                    <div class="contenedor-formulario" id="filtro_materno">
+                                        <label class="label_registro">Apellido Materno:</label>
+                                        <input type="text" id="apellidomaternopaciente" name="apellidomaternopaciente"/>
+                                    </div>
+                                    <div class="contenedor-formulario" id="filtro_fecha">
+                                        <label class="label_registro">Fecha:</label>
+                                        <input name="fecha-min" id="fecha-min" type="date" onchange="asignamin(this.value);">
+                                        <label class="label_registro">-</label>
+                                        <input name="fecha-max" id="fecha-max" type="date">
+                                    </div>
+                                    <div class="contenedor-formulario" id="filtro_area">
+                                        <label for="consultaarea">Area:</label>
+                                        <select class="custom-select" name="consultaarea" id="consultaarea" onchange="consultaestudios(this.value);">
+                                            <option value=""></option>
+                                        </select>
+                                    </div>
+                                    <div class="contenedor-formulario" id="filtro_estudio">
+                                        <label for="consultaestudio">Estudio:</label>
+                                        <select class="custom-select" name="consultaestudio" id="consultaestudio">
+                                            <option value=""></option>
+                                        </select>
+                                    </div>
+                                    <div class="contenedor-formulario" id="filtro_sala">
+                                        <label for="consulta-sala">Sala:</label>
+                                        <select class="custom-select" name="consultasala" id="consultasala">
+                                            <option value=""></option>
+                                        </select>
+                                    </div>
+                                    <div class="contenedor-formulario" id="filtro_estado">
+                                        <label for="consulta-estado">Estado:</label>
+                                        <select class="custom-select" name="consultaestado" id="consultaestado">
+                                            <option value="programadorepro"></option>
+                                            <option value="programado">Programado</option>
+                                            <option value="reprogramado">Reprogramado</option>
+                                            <option value="cancelado">Cancelado</option>
+                                        </select>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="contenedor-footer" id="buscadoragenda">
+                            <button type="button" id="consultaAGENDA" onclick="activamodal('ConsultaAGENDA', this.form)" class="button button1" style="flex-basis:200px; font-size: 15px;">Consultar cita de estudio</button>
+                            <button type="button" id="limpiarFORMULARIO" onclick="activamodal('LimpiarFORMULARIO', this.form)" class="button button1" style="flex-basis:200px; font-size: 15px;">Limpiar</button>
+                        </div>
+                    </div-->
+                    </br>
+                    <!--Contenedor donde se encuentran los botones de busqueda de una solicitud de estudios-->
+                    <div class="flex-container">
+                        <div style="flex-grow: 3; background-color: #fff"></div>
+                        <div style="flex-grow: 3; background-color: #fff"></div>
+                        <div style="flex-grow: 3; background-color: #fff"></div> 
+                        <button onclick="DialogoBusqueda(event)" class="button button1" id="consultaCita">Búsqueda de cita</button> 
+                        <button onclick="consultasolicitud(this)" class="button button1" id="consultarSOLICITUDES">Agendar Cita de Estudio</button> 
+                    </div>
+                    <br>
+                    <!--Apartado para mostrar en un tabla las agendas de estudio-->
+                    <div id="showDataAgendar" class="scrollcell"></div> 
+
+            <!--Modal para mostrar las solicitudes de estudios de acuerdo a los parametros de busqueda-->
+            <div class="modalSOLICITUDES"> 
+                <div>
+                    <h1 style="color:yellow">Solicitudes de Estudio</h1>
+                </div>
+                <div class="modalSOLICITUDES-content">
+                    <div class="flex-container">
+                        <div style="flex-grow: 3; background-color: #fff"></div>
+                        <div style="flex-grow: 3; background-color: #fff"></div>
+                        <div style="flex-grow: 3; background-color: #fff"></div>
+                    </div>
+                    <!--Apartado para mostrar en un tabla las solicitudes de estudio-->
+                    <div id="showDataSolicitudes" class="scrollcell"></div>
+                    <!--Contenedor donde se muestra el boton para cancelar la accion para cancelar la busqueda de solicitudes de estudio y se desactiva el modal.-->
+                    <div class="flex-container">
+                        <button type="button" id="cancelarSOLICITUDES" onclick="activamodal('CancelarSOLICITUDES', this.form)" class="button button1" style="flex-basis:200px; font-size: 15px;">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!--Modal para realizar la agenda de una cita de estudios-->
+            <div class="modalAGENDAR">              
+                <div class="modalAGENDAR-content">
+                    </br>
+                    <div class="contenedor">
+                        <div class="contenedor-header">Información de las citas</div>
+                        <div class="contenedor-agenda">
+                            <div class="flex-container">
+                                <form id="form_paciente">
+                                    <div class="contenedor-formulario">
+                                        <label class="label_registro">Nombre:</label>
+                                        <input type="text" id="agendanombrepaciente" name="agendanombrepaciente" readonly/>
+                                    </div>
+                                    <div class="contenedor-formulario">
+                                        <label class="label_registro">Domicilio:</label>
+                                        <input type="text" id="agendadomicilio" name="agendadomicilio" readonly/>
+                                    </div>
+                                    <div class="contenedor-formulario">
+                                        <label class="label_registro">Area de Procedencia:</label>
+                                        <input type="text" id="agendaareaprocedencia" name="agendaareaprocedencia" readonly/>
+                                    </div>
+                                    <div class="contenedor-formulario">
+                                        <label class="label_registro">Tipo de Paciente:</label>
+                                        <input type="text" id="agendatipopaciente" name="agendatipopaciente" readonly/>
+                                    </div>
+                                    <div class="contenedor-formulario">
+                                        <label class="label_registro">Fecha Proxima Cita Médica:</label>
+                                        <input type="text" id="agendafechaproxima" name="agendafechaproxima" readonly/>
+                                    </div>
+                                    <div class="contenedor-formulario">
+                                        <label class="label_registro">Hora Proxima Cita Médica:</label>
+                                        <input type="text" id="agendahoraproxima" name="agendahoraproxima" readonly/>
+                                    </div>
+                                    <div class="contenedor-formulario">
+                                        <label class="label_registro">Estudio:</label>
+                                        <input type="text" id="agendaestudio" name="agendaestudio" readonly/>
+                                    </div>
+                                    <div id="automatica">
+                                        <!--div id="showDataHorarios" class="scrollcellauto"></div-->
+                                    </div>
+                                    <!--Contenedor para mostrar formularios para realizar la agenda de una cita de forma manual-->
+                                    <div id="contenedor-manual" style="display:none">
+                                        <div class="contenedor-formulario" id="manual_sala">
+                                            <label for="consultaagendasala">Sala/Equipo:</label>
+                                            <select class="custom-select" name="consultaagendasala" id="consultaagendasala" onchange="manualasigncalendar();">
+                                                <option value=""></option>
+                                            </select>
+                                        </div>
+                                        <div class="contenedor-formulario" id="manual_fecha">
+                                            <label class="label_registro">Fecha:</label>
+                                            <input name="agendafecha" id="agendafecha" type="date" onchange="manualasigncalendar();">
+                                        </div>
+                                        <div class="contenedor-formulario" id="manual_hora">
+                                            <label for="agendahora">Hora:</label>
+                                            <select class="custom-select" name="agendahora" id="agendahora">
+                                                <option value=""></option>
+                                            </select>
+                                        </div>
+                                        <div class="contenedor-formulario" id="manual_horajefe">
+                                            <label for="agendahorajefe">Hora:</label>
+                                            <input name="agendahorajefe" id="agendahorajefe" type="time">
+                                        </div>
+                                    </div>
+                                </form>                                
+                            </div>
+                            <!--Contenedor para mostrar opciones de fecha, hora, sala y turno para la asignacion automatica de una cita de estudios-->
+                            <div id="showDataHorarios" class="scrollcellauto"></div>    
+                        </div>
+                        <!--Contenedor para mostrar botones aceptar(confirmacion agenda de estudios), manual(realizar la asignacion de una cita de manera manual) y cancelar(desactiva el modal para agendar una cita)-->
+                        <div class="contenedor-footer" id="buscadoragenda">
+                            <button type="button" id="aceptarAGENDA" onclick="activamodal('AceptarAGENDA', this.form)" class="button button1" style="flex-basis:200px; font-size: 15px;">Aceptar</button>
+                            <button type="button" id="manualAGENDA" onclick="activamodal('ManualAGENDA', this.form)" class="button button1" style="flex-basis:200px; font-size: 15px;">Seleccionar otra Fecha y Hora</button>
+                            <button type="button" id="cancelarAGENDA" onclick="activamodal('CancelarAGENDA', this.form)" class="button button1" style="flex-basis:200px; font-size: 15px;">Cancelar</button>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+            <!--Modal para realizar la cancelacion e ingresar los motivos de cancelacion-->
+            <div class="modalAGENDACANCELAR">              
+                <div class="modalAGENDACANCELAR-content">
+                    <div class="contenedor">
+                        <div class="modal-header">Motivos de Cancelación:</div>
+                        <div class="modal-body">
+                            <textarea id="agendatextcancel" class="text-cancel"></textarea>
+                        </div>
+                        <!--Contenedor para mostrar los botones aceptar(confirmar la cancelacion de una cita agendada) y cancelar(desactiva modal para cancelar una cita de estudios)-->
+                        <div class="modal-footer">
+                            <button type="button" id="aceptarAGENDACANCELAR" onclick="activamodal('AceptarAGENDACANCELAR', this.form)" class="button button1" style="flex-basis:200px; font-size: 15px;">Aceptar</button>
+                            <button type="button" id="cancelarAGENDACANCELAR" onclick="activamodal('CancelarAGENDACANCELAR', this.form)" class="button button1" style="flex-basis:200px; font-size: 15px;">Cancelar</button>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div> 
+            <div class="modalBuscaAgenda">              
+                <div class="modalBuscaAgenda-content">
+                    <div class="contenedor">
+                        <!--Contenedor para realizar la consulta de las solicitudes/consultas.-->
+                        <div class="contenedor-header">Consulta</div>
+                        <div class="contenedor-contenido">
+                            <div class="flex-container">
+                                <form id="form_paciente">
+                                    <div class="contenedor-formulario" id="filtro_numero">
+                                        <label class="label_registro">Número de Registro:</label>
+                                        <input type="text" id="noregistro" name="noregistro"/>
+                                    </div>
+                                    <div class="contenedor-formulario" id="filtro_nombre">
+                                        <label class="label_registro">Nombre:</label>
+                                        <input type="text" id="nombrepaciente" name="nombrepaciente"/>
+                                    </div>
+                                    <div class="contenedor-formulario" id="filtro_paterno">
+                                        <label class="label_registro">Apellido Paterno:</label>
+                                        <input type="text" id="apellidopaternopaciente" name="apellidopaternopaciente"/>
+                                    </div>
+                                    <div class="contenedor-formulario" id="filtro_materno">
+                                        <label class="label_registro">Apellido Materno:</label>
+                                        <input type="text" id="apellidomaternopaciente" name="apellidomaternopaciente"/>
+                                    </div>
+                                    <div class="contenedor-formulario" id="filtro_fecha">
+                                        <label class="label_registro">Fecha:</label>
+                                        <input name="fecha-min" id="fecha-min" type="date" onchange="asignamin(this.value);">
+                                        <label class="label_registro">-</label>
+                                        <input name="fecha-max" id="fecha-max" type="date">
+                                    </div>
+                                    <div class="contenedor-formulario" id="filtro_area">
+                                        <label for="consultaarea">Area:</label>
+                                        <select class="custom-select" name="consultaarea" id="consultaarea" onchange="consultaestudios(this.value);">
+                                            <option value=""></option>
+                                        </select>
+                                    </div>
+                                    <div class="contenedor-formulario" id="filtro_estudio">
+                                        <label for="consultaestudio">Estudio:</label>
+                                        <select class="custom-select" name="consultaestudio" id="consultaestudio">
+                                            <option value=""></option>
+                                        </select>
+                                    </div>
+                                    <div class="contenedor-formulario" id="filtro_sala">
+                                        <label for="consulta-sala">Sala:</label>
+                                        <select class="custom-select" name="consultasala" id="consultasala">
+                                            <option value=""></option>
+                                        </select>
+                                    </div>
+                                    <div class="contenedor-formulario" id="filtro_estado">
+                                        <label for="consulta-estado">Estado:</label>
+                                        <select class="custom-select" name="consultaestado" id="consultaestado">
+                                            <option value="programadorepro"></option>
+                                            <option value="programado">Programado</option>
+                                            <option value="reprogramado">Reprogramado</option>
+                                            <option value="cancelado">Cancelado</option>
+                                        </select>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!--Contenedor donde se encuentran los botones de busqueda de una cita agendada y limpiar el formulario-->
+                        <div class="contenedor-footer" id="buscadoragenda">
+                            <button type="button" id="consultaAGENDA" onclick="activamodal('ConsultaAGENDA', this.form)" class="button button1" style="flex-basis:200px; font-size: 15px;">Consultar cita de estudio</button>
+                            <button type="button" id="limpiarFORMULARIO" onclick="activamodal('LimpiarFORMULARIO', this.form)" class="button button1" style="flex-basis:200px; font-size: 15px;">Limpiar</button>
+                            <button type="button" id="cerrarDialogCita" onclick="DialogoBusqueda(event)" class="button button1" >Cancelar</button>                             
+                        </div>
+                    </div>                    
+                    <!--div class="contenedor">
+                        <div class="modal-header">Búsqueda de estudios:</div>
+                        <div class="modal-body">
+                            <textarea id="agendatextcancel" class="text-cancel"></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" id="aceptarAGENDACANCELAR" onclick="activamodal('AceptarAGENDACANCELAR', this.form)" class="button button1" style="flex-basis:200px; font-size: 15px;">Aceptar</button>
+                            <button type="button" id="cancelarAGENDACANCELAR" onclick="activamodal('CancelarAGENDACANCELAR', this.form)" class="button button1" style="flex-basis:200px; font-size: 15px;">Cancelar</button>
+                        </div>
+                    </div-->
+                    
+                </div>
+            </div>            
+            
+        </section>       
+    </body>
+</html>
