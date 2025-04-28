@@ -1,0 +1,19 @@
+# Archivos compilados de Java
+*.class
+*.jar
+
+# Maven (directorio target/)
+target/
+
+# NetBeans
+/nbproject/private/
+/build/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# Logs y caché
+*.log
+*.cache
+*.diff
