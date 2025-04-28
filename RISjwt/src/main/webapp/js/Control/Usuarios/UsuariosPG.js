@@ -136,12 +136,12 @@ function tableHeaderSelection(tablName, columnas) {
 
 
 //servicio rest para guardar datos
-function postRestService(urlser, jsonData) {
+function postRestService(urlser, jsonData) { // urlserv es la url del servicio
     return $.ajax({
         url: urlser,
         type: 'POST', // Tipo de envio 
         dataType: 'json', //Tipo de Respuesta
-        data: jsonData //datos a enviar
+        data: jsonData //datos a enviar. Estos son los satos que tengo que encriptar 
     }).done(function (data, textStatus, jqXHR) {
         //console.log(data);
     }).fail(function (jqXHR, textStatus, errorThrown) {

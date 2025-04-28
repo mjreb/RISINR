@@ -15,11 +15,12 @@ function evaluaRadioButtonTablaPK0(tabla, colPK) {
 }
 
 function barraBotonesEQP(e) {
-    var opc = e.target.id;
+    console.log("Activamos barraBotonesEQP(btnCatEqptbl) de consulta catálogo")
+    var opc = e.target.id; // Traigo el id del botón btnCatEqptbl 
     console.log("selección: " + opc);
     switch (opc) {
         case 'btnCatEqptbl':
-            readTblsEQP();
+            readTblsEQP(); 
             break;
         case 'btnAddEqptbl':
             var tablaref = "Eqptbl";
@@ -106,25 +107,23 @@ function updatePKSEqp(e) {
 }
 
 function readTblsEQP() {
-    var divtable = "showDataEQP";
-    var tabladatos = "Eqptbl";
-    var columnaedicion = 9;
+    var divtable = "showDataEQP"; // Contenedor donde se inyectará la tabla
+    var tabladatos = "Eqptbl"; //Nombre de la tabla 
+    var columnaedicion = 9; // Columnas de la tabla 
     var columnaPK = 0; //se toma como llave primaria para busquedas la columna 0
-    var coleditar = "Ref";
-    var roweditar = "Sel ";
+    var coleditar = "Ref"; // Nombre de la columna para seleccionar un equipo en la tabla 
+    var roweditar = "Sel "; // Nombre de la checkbox 
     var actionListener = "evaluaRadioButtonTablaPK0('" + tabladatos + "'," + columnaPK + ")";
-    //var actionListener = null;
-    //var colocultas=[0,5];//se oculta la columna 0 y 5
-    //AreaDeServicio: idArea,Nombre,Descripcion
-    //EQUIPO: NSerie, AreaDeServicio_idArea ,Ubicacion 
-    //EquipoImagenologia: NSerie,AreaDeServicio_idArea,Nombre,Marca,Modelo,Modalidad,FechaInstalacion,Estado
-
-    var colocultas = [5]; //se oculta id area
-    var cabecerapac = ["Serie", "Nombre", "Marca", "Modelo", "Modalida", "Id_area", "Área", "Estado","Fecha Instalación"];
-    CreateTableFromJSON(divtable, tabladatos, cabecerapac); //parametros referencia div, nombre tabla , cabecera
+    var colocultas = [5]; //se oculta id area // Se oculaata esta columna, supongo que es dde la BD 
+    var cabecerapac = ["Serie", "Nombre", "Marca", "Modelo", "Modalida", "Id_area", "Área", "Estado","Fecha Instalación"]; // Nombres 
+    CreateTableFromJSON(divtable, tabladatos, cabecerapac); //parametros referencia div, nombre tabla ,nombres de las
     var jsonData = {"nombre": "*"};
     var getEquipoimg = postRestService(uriserv + "/EquipoIMGEntity/ReadAll", jsonData);
+    
+    console.log("Respuesta del postRestService");
+    console.log(getEquipoimg);
     $.when(getEquipoimg.done(function (data) {
+        console.log(data);
         var array = convertTojsonArray(data[0]);
         UpdateTableRows(tabladatos, array);
         tableRowColorCellSelectionKlib(tabladatos);

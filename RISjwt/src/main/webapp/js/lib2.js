@@ -2,17 +2,17 @@
 function activeTab(evt, opcionMenu) {
     var i, tabcontent, tablinks;
     //console.log(evt.currentTarget);
-    tabcontent = document.getElementsByClassName("tabcontent");
+    tabcontent = document.getElementsByClassName("tabcontent"); // Trae a todos los elementos del html actual que tiene  como clase tabcintent(coontenido de la tabla)
     for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
+        tabcontent[i].style.display = "none"; // Esconde todos los contenidos 
     }
-    tablinks = document.getElementsByClassName("tablinks");
+    tablinks = document.getElementsByClassName("tablinks"); // Trae todos los elements que tiene por clase tablinks 
 
     for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
+        tablinks[i].className = tablinks[i].className.replace(" active", ""); // Deja desmarcados todas las opciones 
     }
 
-    document.getElementById(opcionMenu).style.display = "block";
+    document.getElementById(opcionMenu).style.display = "block"; // Deja marcado solo uno 
     strtablinks = evt.currentTarget.className;
     if (strtablinks === "tablinks")
         evt.currentTarget.className += " active";//solo para la clase del menu
@@ -238,9 +238,9 @@ function dateYYYYmmdd() {
 
 //construye una tabla html utilizando la informacion de un arreglo en json
 function CreateTableFromJSON(divnameref, tablename, refhed) {
-    //console.log(refhed);
+    console.log("creando la tabla con CreateTableFromJSON");
     // CREATE DYNAMIC TABLE.
-    var table = document.createElement("table");
+    var table = document.createElement("table"); // Crear un elemento llamdo tabla en el html
     // SET THE TABLE ID. 
     // WE WOULD NEED THE ID TO TRAVERSE AND EXTRACT DATA FROM THE TABLE.	        
     table.setAttribute('id', tablename); //Definicion de id para tabla dinamica
@@ -250,19 +250,20 @@ function CreateTableFromJSON(divnameref, tablename, refhed) {
     //table.scrollIntoView(true);
 
     // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
-    var tr = table.insertRow(-1);                   // TABLE ROW.
+    var tr = table.insertRow(-1);                   // Esto significa que se pone una nueva fila al final 
     //for (var i = 0; i < col.length; i++) {
-    for (var i = 0; i < refhed.length; i++) {
+    for (var i = 0; i < refhed.length; i++) { //refhed.length es el tamaño de la tabla 
         var th = document.createElement("th");      // TABLE HEADER.
         //th.innerHTML = col[i]; //cabecera con las claves del objeto json
-        th.innerHTML = refhed[i]; //cabecera externa
-        tr.appendChild(th);
+        th.innerHTML = refhed[i]; //Asigna el texto que aparecerá dentro de la celda de cabecera (<th>).
+
+        tr.appendChild(th); // Añade la celda de cabecera (<th>) como hijo de la fila (<tr>) que se creó previamente.
     }
 
     // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
     var divContainer = html_GetElement(divnameref);
-    divContainer.innerHTML = ""; 
-    divContainer.appendChild(table);
+    divContainer.innerHTML = ""; // Elimina cualquier elemento hijo previo del div (para evitar duplicados).
+    divContainer.appendChild(table); // Añade la tabla al div.
 }
 
 
