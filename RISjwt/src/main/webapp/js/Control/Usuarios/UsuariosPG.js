@@ -2,7 +2,7 @@ var uriserv = "/RISSERVER/rest/USRSesionRST";
 var host = "http://" + location.host + "/RISSERVER/";
 
 
-function _getTBL(uriServ, nameDivContainer, tablName, columnas) {
+function getTBL(uriServ, nameDivContainer, tablName, columnas) {
     console.log("Llamando a tablaHOLAAA: "+tablName);
     console.log("servicio: "+uriServ);
     return $.ajax({
