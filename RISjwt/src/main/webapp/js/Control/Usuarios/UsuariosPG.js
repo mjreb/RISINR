@@ -139,11 +139,11 @@ function tableHeaderSelection(tablName, columnas) {
 function postRestService(urlser, jsonData) { // urlserv es la url del servicio
     return $.ajax({
         url: urlser,
-        type: 'POST', // Tipo de envio 
+        type: 'POST', // Tipo de petición  
         dataType: 'json', //Tipo de Respuesta
-        data: jsonData //datos a enviar. Estos son los satos que tengo que encriptar 
+        data: jsonData //datos a enviar. Estos son los datos que tengo que encriptar 
     }).done(function (data, textStatus, jqXHR) {
-        //console.log(data);
+        //console.log(data); No hace nada visible 
     }).fail(function (jqXHR, textStatus, errorThrown) {
         alert("Error al procesar la respuesta " + errorThrown);
     }).always(function (jqXHROrData, textStatus, jqXHROrErrorThrown) {

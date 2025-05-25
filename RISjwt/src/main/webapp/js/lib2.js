@@ -711,7 +711,7 @@ function POSTForDataFiles(formData, servicio) {
         type: 'post',
         data: formData,
         processData: false, // tell jQuery not to process the data
-        enctype: 'multipart/form-data',
+        enctype: 'multipart/form-data', // omúnmente utilizado para formularios con texto y/o archivos. Está implementado con JAX-RS (Java API for RESTful Web Services).
         contentType: false  // tell jQuery not to set contentType        
     }).done(function (data) {
         //console.log(data);

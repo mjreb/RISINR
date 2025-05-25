@@ -117,14 +117,16 @@ function readTblsEQP() {
     var colocultas = [5]; //se oculta id area // Se oculaata esta columna, supongo que es dde la BD 
     var cabecerapac = ["Serie", "Nombre", "Marca", "Modelo", "Modalida", "Id_area", "Área", "Estado","Fecha Instalación"]; // Nombres 
     CreateTableFromJSON(divtable, tabladatos, cabecerapac); //parametros referencia div, nombre tabla ,nombres de las
-    var jsonData = {"nombre": "*"};
-    var getEquipoimg = postRestService(uriserv + "/EquipoIMGEntity/ReadAll", jsonData);
+    var jsonData = {"nombre": "*"}; // Estos son los datos que hay que encriptar. * es para pedir toddo.
+    var getEquipoimg = postRestService(uriserv + "/EquipoIMGEntity/ReadAll", jsonData); // petición asíncrona 
     
     console.log("Respuesta del postRestService");
     console.log(getEquipoimg);
     $.when(getEquipoimg.done(function (data) {
         console.log(data);
-        var array = convertTojsonArray(data[0]);
+        console.log("Es array?", Array.isArray(data)); // Sí es un array pero de cadenas JSON 
+        console.log("Primer elemento:", data[0]);
+        var array = convertTojsonArray(data[0]); //¿esto es necesario?
         UpdateTableRows(tabladatos, array);
         tableRowColorCellSelectionKlib(tabladatos);
         hideTableColumns(tabladatos, colocultas); //ocultar columnas (medico, idpac) 
@@ -132,6 +134,7 @@ function readTblsEQP() {
     }));
 }
 
+// Lo veo innecesario
 function convertTojsonArray(arreglocadena) {
     var resultSet = []; //arreglo de objetos json
     for (var i in arreglocadena) {
@@ -154,9 +157,9 @@ function listenermodalEQPRIS(e) {
             var formData = getFormData("UpdateEqp", "formEquipoRIS");
             //var getEquipoimg =POSTForDataFiles(formData, uriserv + "/FormularioEqpImg/UpdateEqp");
             var getEquipoimg = POSTForDataFiles(formData, uriserv + "/FormularioEqpImg");
-            $.when(getEquipoimg.done(function (data) {
+            $.when(getEquipoimg.done(function (data) {  // CREO QUE AQUÍ DEBO DESENCRIPTAR. 
                 console.log(data);
-                var resp = JSON.parse(data);
+                var resp = JSON.parse(data); // Aquí desencripto. 
                 console.log(resp);
                 if (resp[0] === '1') {
                     alert("Se actualizo el registro con exito");

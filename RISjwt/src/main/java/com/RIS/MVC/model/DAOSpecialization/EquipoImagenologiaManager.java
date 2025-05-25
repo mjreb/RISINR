@@ -29,13 +29,19 @@ public class EquipoImagenologiaManager extends GenericDAOFacade<EquipoImagenolog
     //public Collection<EquipoImagenologia> getAllEquipoImagenologia(){
     public JSONArray getAllEquipoImagenologia(){
         //ObjectMapper mapper = new ObjectMapper();
-        TypedQuery<EquipoImagenologia> query;
+        TypedQuery<EquipoImagenologia> query;// Declara una variable query de tipo TypedQuery<EquipoImagenologia>, que representa una consulta JPA tipada que devolverá objetos de tipo EquipoImagenologia.
         query = entityManager.createNamedQuery("EquipoImagenologia.findAll", EquipoImagenologia.class);//JPQL
-        Collection<EquipoImagenologia> coleEqpIMG = query.getResultList();
-        JSONArray jsonArray = new JSONArray();
-        ObjectNode ON=null;
+        //Crea una consulta usando el EntityManager
+        //"EquipoImagenologia.findAll" es el nombre de una consulta JPQL predefinida (en la entidad)
+        //EquipoImagenologia.class indica el tipo de resultado esperado
+        // Esto es lo que tengo que cambiar 
+            Collection<EquipoImagenologia> coleEqpIMG = query.getResultList(); // Ejecuta la consulta y obtiene una coleccion de objetos EquipoImaggenologia 
+        // getResultList() devuelve una lista de resultados
+            JSONArray jsonArray = new JSONArray(); // Crea un nuevo array JSON vacío que contendrá todos los equipos convertidos.
+        ObjectNode ON=null; // variable ON (Object Node) que se usará para crear objetos JSON individuales para cada equipo.
         for (EquipoImagenologia eqp : coleEqpIMG) {
-            ON=new ObjectMapper().createObjectNode(); 
+            // Añade al JSON la propiedad del equipo actual
+            ON=new ObjectMapper().createObjectNode(); // Crea un nuevo nodo JSON vacío (objeto) para el equipo actual
             ON.put("nSerie", eqp.getNSerie());
             ON.put("nombreEqp", eqp.getNombre());
             ON.put("marcaEqp", eqp.getMarca());
@@ -54,7 +60,7 @@ public class EquipoImagenologiaManager extends GenericDAOFacade<EquipoImagenolog
             }
             jsonArray.put(ON);
         }        
-        return jsonArray;          
+        return jsonArray;          // Devuelve el arreglo de todos los json correspondientes a cada equipo 
     }
     
     private String toDateFormat(Date fecha,String formato){

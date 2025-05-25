@@ -370,18 +370,24 @@ public class RISRESTFulOrchestrator {
     @Path("/EquipoIMGEntity/{CRUD}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response manageEquipoIMG(@PathParam("CRUD") String operacion, MultivaluedMap<String, String> formParams) {
-        System.out.println("Equipos img");
-        ObjectMapper mapper = new ObjectMapper();
-        ArrayNode jsonArray = mapper.createArrayNode();  
-        EquipoImagenologiaManager EqIMGmanager = new EquipoImagenologiaManager();
-        EqIMGmanager.setEntityManager(sm.getEntityManager());
-        JSONArray datoseqp=null;
-        switch (operacion) {
+        // PathParam es la es la ruta dinámica (operación) y 
+        // MultivalueMap son los datos que voy a enviar (los que encripté)
+        ObjectMapper mapper = new ObjectMapper(); // Esta clase permite leer y escribir objetos JSON
+        ArrayNode jsonArray = mapper.createArrayNode();  // Arrays mapeados desde un JSON 
+        EquipoImagenologiaManager EqIMGmanager = new EquipoImagenologiaManager(); // Manejador del equipo de imagenología 
+        EqIMGmanager.setEntityManager(sm.getEntityManager()); // Es el núcleo de cualquier operación de persistencia en aplicaciones Java que usan JPA/Hibernate.
+        JSONArray datoseqp=null;// Aquí se va a almacenar un arreglo de JSON 
+        switch (operacion) { // Evalúa la parte dinpamica de la ruta 
             case "ReadAll": 
-                String nombre=formParams.getFirst("nombre");
-                datoseqp=EqIMGmanager.getAllEquipoImagenologia();
+                String nombre=formParams.getFirst("nombre"); // Obtiene el contenido de la primera clave que aparezca como nombre 
+                datoseqp=EqIMGmanager.getAllEquipoImagenologia();  
                 System.out.println(datoseqp);
-                jsonArray.addPOJO(datoseqp);                        
+                jsonArray.addPOJO(datoseqp); // JSON de la librería Jackson
+                /* .adddPOJO toma un objeto Java y lo convierte automáticamente a su representación JSON
+                    Agrega el resultado convertido como nuevo elemento del ArrayNode
+                    ¿pero no los datos ya están en formato JSON?
+                    Java Object → JSONArray → ArrayNode → String JSON 
+                */
             break;
             /*case "DeleteREgPK": 
                 String nombre=formParams.getFirst("nombre");
@@ -390,7 +396,9 @@ public class RISRESTFulOrchestrator {
                 jsonArray.addPOJO(datoseqp);                        
             break;*/
         }        
-       return Response.status(Response.Status.OK).entity(jsonArray.toString()).build();
+       return Response.status(Response.Status.OK).entity(jsonArray.toString()).build(); // Quitar el toString y enviar únicamente el array
+       
+       
     } 
 
     @POST
