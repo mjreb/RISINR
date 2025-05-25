@@ -6,6 +6,7 @@ import com.RIS.MVC.model.DAOSpecialization.AreaManager;
 import com.RIS.MVC.model.DAOSpecialization.DeviceManager;
 import com.RIS.MVC.model.DAOSpecialization.EquipoImagenologiaManager;
 import com.RIS.MVC.model.DAOSpecialization.RolManager;
+import com.RIS.MVC.model.DAOSpecialization.ServicioEquipoImagenologiaManager;
 import com.RIS.MVC.model.DAOSpecialization.SesionManager;
 import com.RIS.MVC.model.DAOSpecialization.StudiesManager;
 import com.RIS.MVC.model.DAOSpecialization.StudyRequestManager;
@@ -370,35 +371,11 @@ public class RISRESTFulOrchestrator {
     @Path("/EquipoIMGEntity/{CRUD}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response manageEquipoIMG(@PathParam("CRUD") String operacion, MultivaluedMap<String, String> formParams) {
-        // PathParam es la es la ruta dinámica (operación) y 
-        // MultivalueMap son los datos que voy a enviar (los que encripté)
-        ObjectMapper mapper = new ObjectMapper(); // Esta clase permite leer y escribir objetos JSON
-        ArrayNode jsonArray = mapper.createArrayNode();  // Arrays mapeados desde un JSON 
-        EquipoImagenologiaManager EqIMGmanager = new EquipoImagenologiaManager(); // Manejador del equipo de imagenología 
-        EqIMGmanager.setEntityManager(sm.getEntityManager()); // Es el núcleo de cualquier operación de persistencia en aplicaciones Java que usan JPA/Hibernate.
-        JSONArray datoseqp=null;// Aquí se va a almacenar un arreglo de JSON 
-        switch (operacion) { // Evalúa la parte dinpamica de la ruta 
-            case "ReadAll": 
-                String nombre=formParams.getFirst("nombre"); // Obtiene el contenido de la primera clave que aparezca como nombre 
-                datoseqp=EqIMGmanager.getAllEquipoImagenologia();  
-                System.out.println(datoseqp);
-                jsonArray.addPOJO(datoseqp); // JSON de la librería Jackson
-                /* .adddPOJO toma un objeto Java y lo convierte automáticamente a su representación JSON
-                    Agrega el resultado convertido como nuevo elemento del ArrayNode
-                    ¿pero no los datos ya están en formato JSON?
-                    Java Object → JSONArray → ArrayNode → String JSON 
-                */
-            break;
-            /*case "DeleteREgPK": 
-                String nombre=formParams.getFirst("nombre");
-                datoseqp=EqIMGmanager.getAllEquipoImagenologia();
-                System.out.println(datoseqp);
-                jsonArray.addPOJO(datoseqp);                        
-            break;*/
-        }        
-       return Response.status(Response.Status.OK).entity(jsonArray.toString()).build(); // Quitar el toString y enviar únicamente el array
-       
-       
+
+        ServicioEquipoImagenologiaManager SEIM = new ServicioEquipoImagenologiaManager(sm);
+        ArrayNode jsonArray= SEIM.consultarCatalogo(operacion, formParams); 
+         
+       return Response.status(Response.Status.OK).entity(jsonArray.toString()).build(); // Quitar el toString y enviar únicamente el array 
     } 
 
     @POST
@@ -406,42 +383,14 @@ public class RISRESTFulOrchestrator {
     @Path("/FormularioEqpImg")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     //public Response resolveServicesPost(@PathParam("CRUD") String operation,FormDataMultiPart formParams) throws IOException {
-    public Response resolveServicesPost(FormDataMultiPart formParams) throws IOException {            
-        ObjectMapper mapper = new ObjectMapper();
-        ArrayNode jsonArray = mapper.createArrayNode();
+    public Response resolveServicesPost(FormDataMultiPart formParams) throws IOException {     
+        ServicioEquipoImagenologiaManager SEIM = new ServicioEquipoImagenologiaManager(sm);
+        ArrayNode jsonArray = SEIM.crearYeditar(formParams); 
         
-        /*System.out.println("Datos: " + formParams.getHeaders().toString());
-        System.out.println("URL: " + formParams.getHeaders().getFirst("referer"));
-        Iterator<String> it = formParams.getFields().keySet().iterator();
-         while(it.hasNext()){
-           String theKey = (String)it.next();
-           if(formParams.getField(theKey).isSimple()){
-            System.out.println("Clave: ["+theKey+"]-> "+formParams.getField(theKey).getValue());
-           }else{
-              System.out.println("Clave: ["+theKey+"]-> "+formParams.getField(theKey)); 
-           } 
-       } */
-        EquipoImagenologiaManager EqIMGmanager = new EquipoImagenologiaManager();
-        EqIMGmanager.setEntityManager(sm.getEntityManager());         
-        JSONArray datoseqp=null; /*new JSONArray();*/
-        //leer datos de la forma
-        String oper=formParams.getField("Operation").getValue(); //definido en la forma
-        System.out.println("**Operacion: "+oper);
-        String nserie=formParams.getField("nserEQP").getValue();
-        String nombreeqp=formParams.getField("nomEQP").getValue();
-        String marcaeqp=formParams.getField("marcaEQP").getValue();
-        String modeloeqp=formParams.getField("modeloEQP").getValue();
-        String modalidaeqp=formParams.getField("modalEqp").getValue();
-        String idarea=formParams.getField("areEqp").getValue();
-        String estadoeqp=formParams.getField("edoEqp").getValue();  
-        datoseqp=EqIMGmanager.createUpdateEquipoImagenologia(nserie,nombreeqp,marcaeqp,modeloeqp,modalidaeqp,Integer.parseInt(idarea),estadoeqp,oper);  
-        if(datoseqp!=null){
-         jsonArray.add("1");
-        }else{
-         jsonArray.add("0");
-        }         
         return Response.status(Response.Status.OK).entity(jsonArray.toString()).build();
      }   
+    
+    
     /*
     @POST
     @Path("/pruebaseguridad/actualizarusuario")
@@ -1075,35 +1024,7 @@ public class RISRESTFulOrchestrator {
         String estado = (String) infodescifrada.get("estado");
         
     
-        
-        /*
-        
-        //Se busca el elemento idpaciente y se setea en la variable idpaciente.
-        String idpaciente = formParams.getFirst("idpaciente");
-        
-        
-        for (int i = 0; i < idpaciente.length(); i++) {
-            char c = idpaciente.charAt(i);
-            if (Character.isISOControl(c)) {  // Si es un carácter no imprimible
-                System.out.println("Carácter no imprimible encontrado en la posición " + i + ": '" + c + "' (Código Unicode: " + (int)c + ")");
-                
-                break; // Salir del bucle al encontrar el primer carácter no imprimible
-            }
-        }
-        
-        System.out.println("El bucle ha terminado, y se ha revisado toda la cadena.");
-        //System.out.println("El id del paciente es:"+idpaciente);
-        String nombrepaciente = formParams.getFirst("nombrepaciente");
-        String apellidopaternopaciente = formParams.getFirst("apellidopaternopaciente");
-        String apellidomaternopaciente = formParams.getFirst("apellidomaternopaciente");
-        String idestudio = formParams.getFirst("idestudio");
-        String fechamin = formParams.getFirst("fechamin");
-        String fechamax = formParams.getFirst("fechamax");
-        String idarea = formParams.getFirst("idarea");
-        String sala = formParams.getFirst("sala");
-        String estado = formParams.getFirst("estado");
-        System.out.println("El estado es:"+estado);
-        */
+       
         //Se invoca el metodo para obtener los datos de una cita de estudios, se guarda el valor en una colección de Objetos.
         Collection<Object[]> listacitas = appointmententity.getAppointment(idpaciente, nombrepaciente, apellidopaternopaciente, apellidomaternopaciente, idestudio, fechamin, fechamax, idarea, sala, estado);
         //Validación si el objeto tiene elementos.
