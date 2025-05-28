@@ -30,7 +30,7 @@ public class ServicioEquipoImagenologiaManager {
         // MultivalueMap son los datos que voy a enviar (los que encripté)
         ObjectMapper mapper = new ObjectMapper(); // Esta clase permite leer y escribir objetos JSON
         ArrayNode jsonArray = mapper.createArrayNode();  // Arrays mapeados desde un JSON 
-        EqIMGmanager = new EquipoImagenologiaManager(); // Manejador del equipo de imagenología 
+        //EqIMGmanager = new EquipoImagenologiaManager(); // Manejador del equipo de imagenología 
         EqIMGmanager.setEntityManager(sm.getEntityManager()); // Es el núcleo de cualquier operación de persistencia en aplicaciones Java que usan JPA/Hibernate.
         JSONArray datoseqp=null;// Aquí se va a almacenar un arreglo de JSON 
         switch (operacion) { // Evalúa la parresolvte dinpamica de la ruta 

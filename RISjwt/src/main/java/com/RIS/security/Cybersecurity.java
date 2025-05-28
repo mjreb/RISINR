@@ -46,6 +46,7 @@ public class Cybersecurity {
         return llavePublica;
     }
     
+    // Lo que hace es verificar la firma de un JWT usando la clave pública del frontend.
     public String encriptarDatos(String Datos){
         
         String token = Jwts.builder()
@@ -56,6 +57,8 @@ public class Cybersecurity {
                 .compact();  
         return token;
     }  
+    
+    // Este metodo no desencripta,  Solo verifica la firma del JWT.
     public Claims desencriptarDatos(String llavepublica,String Token) throws NoSuchAlgorithmException, InvalidKeySpecException{
         
         System.out.println("El token es:"+ Token);

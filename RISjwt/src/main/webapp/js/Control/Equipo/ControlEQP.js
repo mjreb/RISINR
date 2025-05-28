@@ -117,7 +117,8 @@ function readTblsEQP() {
     var colocultas = [5]; //se oculta id area // Se oculaata esta columna, supongo que es dde la BD 
     var cabecerapac = ["Serie", "Nombre", "Marca", "Modelo", "Modalida", "Id_area", "Área", "Estado","Fecha Instalación"]; // Nombres 
     CreateTableFromJSON(divtable, tabladatos, cabecerapac); //parametros referencia div, nombre tabla ,nombres de las
-    var jsonData = {"nombre": "*"}; // Estos son los datos que hay que encriptar. * es para pedir toddo.
+    var jsonData = {"nombre": "*"}; // Estos son los datos que hay que encriptar. * es para pedir todo.
+    
     var getEquipoimg = postRestService(uriserv + "/EquipoIMGEntity/ReadAll", jsonData); // petición asíncrona 
     
     console.log("Respuesta del postRestService");
