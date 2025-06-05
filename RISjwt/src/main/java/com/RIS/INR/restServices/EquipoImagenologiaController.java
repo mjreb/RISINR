@@ -4,9 +4,26 @@
  */
 package com.RIS.INR.restServices;
 
+import com.RIS.MVC.model.DAOSpecialization.EquipoImagenologiaManager;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class EquipoImagenologiaController {
+    
+    @Autowired
+    private EquipoImagenologiaManager EquipoIMG;
+    
+    
+    @PostMapping("/SpringEquipoIMGEntity/{CRUD}")
+    public ResponseEntity consultarTodos(){
+        
+        return ResponseEntity.ok("Hola");
+        
+    }
+    
+    
     
 }

@@ -1,5 +1,6 @@
 package com.RIS.MVC.model.DAOSpecialization;
 
+import com.RIS.MVC.model.CRUDrepository.EquipoImagenologiaRepository;
 import com.RIS.MVC.model.CRUDrepository.GenericDAOFacade;
 import com.RIS.MVC.model.JPA.entities.AreaDeServicio;
 import com.RIS.MVC.model.JPA.entities.EquipoImagenologia;
@@ -14,13 +15,15 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import org.json.JSONArray;
+import org.jvnet.hk2.annotations.Service;
+import org.springframework.beans.factory.annotation.Autowired;
 
-/**
- *
- * @author DDT1
- */
+
+@Service
 public class EquipoImagenologiaManager extends GenericDAOFacade<EquipoImagenologia>{
     
+    @Autowired
+    private EquipoImagenologiaRepository repository; 
     
     public EquipoImagenologiaManager() {
         super(EquipoImagenologia.class);
@@ -123,5 +126,12 @@ public class EquipoImagenologiaManager extends GenericDAOFacade<EquipoImagenolog
     public static void main(String args[]) {
         accesoJPA();
 
-    }     
+    }   
+    
+    // ----------------- Nuevo -------------------------------
+    
+    
+    
+    
+    
 }

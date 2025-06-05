@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="
+<beans xmlns="http://www.springframework.org/schema/beans"<!-- Define el namespace por defecto -->
+       xmlns:context="http://www.springframework.org/schema/context" <!-- Este permite usar elementos como <context:component-scan> -->
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" <!-- Este namespace es parte del estándar XML Schema y se necesita para usar xsi:schemaLocation. -->
+      <!-- Esto le dice a Spring qué reglas seguir para interpretar cada etiqueta dentro de los namespace declarados. -->
+        xsi:schemaLocation="
            http://www.springframework.org/schema/beans 
            https://www.springframework.org/schema/beans/spring-beans.xsd
            http://www.springframework.org/schema/context 
            https://www.springframework.org/schema/context/spring-context.xsd">
 
-    <!-- Escaneo automático de clases anotadas -->
+    <!-- Escaneo automático de clases con anotaciones -->
     <context:component-scan base-package="com.RIS" />
 
     <!-- Beans declarados manualmente -->
