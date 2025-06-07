@@ -366,11 +366,12 @@ public class RISRESTFulOrchestrator {
        return Response.status(Response.Status.OK).entity(datos.toString()).build();
     }  
     
+    /*
+    
     @POST
     @Path("/EquipoIMGEntity/{CRUD}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response manageEquipoIMG(@PathParam("CRUD") String operacion, MultivaluedMap<String, String> formParams) {
-        System.out.println("Equipos img");
         ObjectMapper mapper = new ObjectMapper();
         ArrayNode jsonArray = mapper.createArrayNode();  
         EquipoImagenologiaManager EqIMGmanager = new EquipoImagenologiaManager();
@@ -389,9 +390,10 @@ public class RISRESTFulOrchestrator {
                 System.out.println(datoseqp);
                 jsonArray.addPOJO(datoseqp);                        
             break;*/
-        }        
-       return Response.status(Response.Status.OK).entity(jsonArray.toString()).build();
-    } 
+       // }        
+       //return Response.status(Response.Status.OK).entity(jsonArray.toString()).build();
+   // }
+    /*
 
     @POST
     //@Path("/FormularioEqpImg/{CRUD}")
@@ -413,9 +415,10 @@ public class RISRESTFulOrchestrator {
               System.out.println("Clave: ["+theKey+"]-> "+formParams.getField(theKey)); 
            } 
        } */
+    /*
         EquipoImagenologiaManager EqIMGmanager = new EquipoImagenologiaManager();
         EqIMGmanager.setEntityManager(sm.getEntityManager());         
-        JSONArray datoseqp=null; /*new JSONArray();*/
+        JSONArray datoseqp=null; /*new JSONArray();
         //leer datos de la forma
         String oper=formParams.getField("Operation").getValue(); //definido en la forma
         System.out.println("**Operacion: "+oper);
@@ -434,6 +437,7 @@ public class RISRESTFulOrchestrator {
         }         
         return Response.status(Response.Status.OK).entity(jsonArray.toString()).build();
      }   
+    */
     /*
     @POST
     @Path("/pruebaseguridad/actualizarusuario")

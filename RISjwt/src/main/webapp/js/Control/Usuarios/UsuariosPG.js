@@ -1,4 +1,6 @@
 var uriserv = "/RISSERVER/rest/USRSesionRST";
+var uri2 = "/RISSERVER/rest/SpringEquipoImagenologia";
+
 var host = "http://" + location.host + "/RISSERVER/";
 
 
@@ -136,12 +138,13 @@ function tableHeaderSelection(tablName, columnas) {
 
 
 //servicio rest para guardar datos
-function postRestService(urlser, jsonData) {
+function postRestService(uri2, jsonData) {
     return $.ajax({
-        url: urlser,
+        url: uri2,
         type: 'POST', // Tipo de envio 
         dataType: 'json', //Tipo de Respuesta
-        data: jsonData //datos a enviar
+        contentType: 'application/json',
+        data: JSON.stringify(jsonData) //datos a enviar. De objeto js a formato de cadena JSON
     }).done(function (data, textStatus, jqXHR) {
         //console.log(data);
     }).fail(function (jqXHR, textStatus, errorThrown) {

@@ -5,11 +5,13 @@ import com.RIS.MVC.model.CRUDrepository.GenericDAOFacade;
 import com.RIS.MVC.model.JPA.entities.AreaDeServicio;
 import com.RIS.MVC.model.JPA.entities.EquipoImagenologia;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -20,116 +22,51 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 
 @Service
-public class EquipoImagenologiaManager extends GenericDAOFacade<EquipoImagenologia>{
+public class EquipoImagenologiaManager{
     
     @Autowired
     private EquipoImagenologiaRepository repository; 
     
-    public EquipoImagenologiaManager() {
-        super(EquipoImagenologia.class);
-    }
+   
+    // ----------------- Nuevo -------------------------------
     
-    //public Collection<EquipoImagenologia> getAllEquipoImagenologia(){
-    public JSONArray getAllEquipoImagenologia(){
-        //ObjectMapper mapper = new ObjectMapper();
-        TypedQuery<EquipoImagenologia> query;
-        query = entityManager.createNamedQuery("EquipoImagenologia.findAll", EquipoImagenologia.class);//JPQL
-        Collection<EquipoImagenologia> coleEqpIMG = query.getResultList();
-        JSONArray jsonArray = new JSONArray();
-        ObjectNode ON=null;
-        for (EquipoImagenologia eqp : coleEqpIMG) {
-            ON=new ObjectMapper().createObjectNode(); 
-            ON.put("nSerie", eqp.getNSerie());
-            ON.put("nombreEqp", eqp.getNombre());
-            ON.put("marcaEqp", eqp.getMarca());
-            ON.put("modeloEqp", eqp.getModelo());
-            ON.put("modalidaEqp", eqp.getModalidad());
-            ON.put("idArea", eqp.getAreaDeServicioidArea().getIdArea());
-            ON.put("nomArea", eqp.getAreaDeServicioidArea().getNombre());
-            ON.put("zEdo", eqp.getEstado());
+    public ArrayNode consultarEquipos(){
+    
+        List<EquipoImagenologia> equipos = repository.findAll();
+        ObjectMapper mapper = new ObjectMapper();
+        ArrayNode jsonArray = mapper.createArrayNode();
+       
+        for (EquipoImagenologia eqp : equipos) {
+            ObjectNode obj = mapper.createObjectNode(); 
+            obj.put("nSerie", eqp.getNSerie());
+            obj.put("nombreEqp", eqp.getNombre());
+            obj.put("marcaEqp", eqp.getMarca());
+            obj.put("modeloEqp", eqp.getModelo());
+            obj.put("modalidaEqp", eqp.getModalidad());
+            obj.put("idArea", eqp.getAreaDeServicioidArea().getIdArea());
+            obj.put("nomArea", eqp.getAreaDeServicioidArea().getNombre());
+            obj.put("zEdo", eqp.getEstado());
             //ON.put("fInst", eqp.getFechaInstalacion().toString());
             Date  fecha=eqp.getFechaInstalacion();
             if(fecha ==null){
-                ON.put("fInst", "");
+                obj.put("fInst", "");
             }else{
                 String feform=toDateFormat(fecha,"yyyy-MM-dd");              
-                ON.put("fInst",feform); //Ojo con los nulos.
+                obj.put("fInst",feform); //Ojo con los nulos.
             }
-            jsonArray.put(ON);
+            jsonArray.add(obj);
         }        
-        return jsonArray;          
+        
+        return jsonArray;
+        
     }
     
-    private String toDateFormat(Date fecha,String formato){
+       private String toDateFormat(Date fecha,String formato){
        //DateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
        DateFormat formatter = new SimpleDateFormat(formato);
        String fechaformato = formatter.format(fecha); 
        return  fechaformato;    
-    }    
-    
-    public JSONArray createUpdateEquipoImagenologia(String nserie,String nombreeqp,String marcaeqp,String modeloeqp,String modalidaeqp,int idarea,String estadoeqp,String operacion){
-      JSONArray jsonArray = new JSONArray();
-      EquipoImagenologia eqpimg= new EquipoImagenologia();
-      eqpimg.setNSerie(nserie);
-      eqpimg.setNombre(nombreeqp);
-      eqpimg.setMarca(marcaeqp);
-      eqpimg.setModelo(modeloeqp);
-      eqpimg.setModalidad(modalidaeqp);
-      AreaDeServicio areaeqp= new AreaDeServicio();
-      areaeqp.setIdArea(idarea);
-      eqpimg.setAreaDeServicioidArea(areaeqp);
-      eqpimg.setEstado(estadoeqp);
-      EquipoImagenologia newisr=null;
-      Date fechaatualSys= new Date(System.currentTimeMillis());
-      switch(operacion){
-          case "CreateEqp":
-                eqpimg.setFechaInstalacion(fechaatualSys);
-                newisr=this.save(eqpimg); //se almacena el registro              
-              break;
-          case "UpdateEqp":
-                //agregar campo para fecha de actulización
-                //eqpimg.setFechaCambio(fechaatualSys);
-                newisr=this.edit(eqpimg); //se almacena el registro                            
-              break;              
-      }
-
-      jsonArray.put(newisr);
-      return jsonArray;  
     }
-    
-    /*
-    public JSONObject deleteRegEqpPK(int nserie){
-        //analizar dependencia por constraints en BD
-        TypedQuery<EquipoImagenologia> query;
-        query = entityManager.createNamedQuery("EquipoImagenologia.findByNSerie", EquipoImagenologia.class);//JPQL
-        query.setParameter("nSerie", nserie);  
-        JSONObject json = new JSONObject();
-        return json;
-    }*/    
-    
-    public static void accesoJPA() {
-        //solo para base de datos
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PesitenceREST"); // se encuentra en el archivo persistence.xml
-        EntityManager entityManager = emf.createEntityManager();
-        EquipoImagenologiaManager EqIMGmanager = new EquipoImagenologiaManager();
-        EqIMGmanager.setEntityManager(entityManager);
-        //Collection<EquipoImagenologia> coleEqpIMG=EqIMGmanager.getAllEquipoImagenologia();
-        JSONArray datoseqp=EqIMGmanager.getAllEquipoImagenologia();
-        System.out.println(datoseqp);
-        
-        // for-each loop
-        /*for (EquipoImagenologia eqp : coleEqpIMG) {
-            System.out.println("Nombre: "+eqp.getNombre()+", Area: "+eqp.getAreaDeServicioidArea().getNombre());
-        }*/
-    }    
-    
-    public static void main(String args[]) {
-        accesoJPA();
-
-    }   
-    
-    // ----------------- Nuevo -------------------------------
-    
     
     
     

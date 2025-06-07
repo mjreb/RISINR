@@ -1,4 +1,5 @@
 var uriserv = "/RISSERVER/rest/USRSesionRST";
+var uri2 = "/RISSERVER/rest/SpringEquipoImagenologia";
 
 function activaBotonesEQP(table, bandera) {
     //bandera: [true,false]
@@ -122,12 +123,12 @@ function readTblsEQP() {
     var colocultas = [5]; //se oculta id area
     var cabecerapac = ["Serie", "Nombre", "Marca", "Modelo", "Modalida", "Id_area", "Área", "Estado","Fecha Instalación"];
     CreateTableFromJSON(divtable, tabladatos, cabecerapac); //parametros referencia div, nombre tabla , cabecera
-    var jsonData = {"nombre": "*"};
-    var getEquipoimg = postRestService(uriserv + "/SpringEquipoIMGEntity/ReadAll", jsonData);
+    var jsonData = {"nombre": "*"};// Objeto js
+    var getEquipoimg = postRestService(uri2 + "/requestALL", jsonData);
     //var getEquipoimg = postRestService(uriserv + "/EquipoIMGEntity/ReadAll", jsonData);
     $.when(getEquipoimg.done(function (data) {
-        var array = convertTojsonArray(data[0]);
-        UpdateTableRows(tabladatos, array);
+        //var array = convertTojsonArray(data[0]);
+        UpdateTableRows(tabladatos, data);
         tableRowColorCellSelectionKlib(tabladatos);
         hideTableColumns(tabladatos, colocultas); //ocultar columnas (medico, idpac) 
         addRadioButtonColumnPKTBL(tabladatos, columnaedicion, coleditar, roweditar, actionListener, columnaPK); //columna k con radiobutton y acctionlistne                     
