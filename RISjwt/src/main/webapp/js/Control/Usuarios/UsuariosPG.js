@@ -140,8 +140,10 @@ function postRestService(urlser, jsonData) {
     return $.ajax({
         url: urlser,
         type: 'POST', // Tipo de envio 
+        //contentType: 'application/json', // <-- Voy a enviarte el cuerpo de la petición en formato JSON.
         dataType: 'json', //Tipo de Respuesta
-        data: jsonData //datos a enviar
+        data: jsonData
+      //data: JSON.stringify(jsonData)   // <-- Convierte el objeto JavaScript a una cadena en formato JSON
     }).done(function (data, textStatus, jqXHR) {
         //console.log(data);
     }).fail(function (jqXHR, textStatus, errorThrown) {

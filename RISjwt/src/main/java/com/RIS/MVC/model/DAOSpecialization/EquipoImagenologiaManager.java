@@ -4,6 +4,7 @@ import com.RIS.MVC.model.CRUDrepository.GenericDAOFacade;
 import com.RIS.MVC.model.JPA.entities.AreaDeServicio;
 import com.RIS.MVC.model.JPA.entities.EquipoImagenologia;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -12,6 +13,7 @@ import java.util.Date;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import org.json.JSONArray;
 
@@ -21,7 +23,8 @@ import org.json.JSONArray;
  */
 public class EquipoImagenologiaManager extends GenericDAOFacade<EquipoImagenologia>{
     
-    
+    @PersistenceContext
+    private EntityManager entityManager; 
     public EquipoImagenologiaManager() {
         super(EquipoImagenologia.class);
     }
@@ -123,5 +126,45 @@ public class EquipoImagenologiaManager extends GenericDAOFacade<EquipoImagenolog
     public static void main(String args[]) {
         accesoJPA();
 
-    }     
-}
+    }    
+    
+    
+    
+    public ArrayNode consultarTodos(){
+        
+        TypedQuery<EquipoImagenologia> query;
+        query = entityManager.createNamedQuery("EquipoImagenologia.findAll", EquipoImagenologia.class);//JPQL
+        Collection<EquipoImagenologia> coleEqpIMG = query.getResultList();
+        ObjectMapper mapper = new ObjectMapper();
+        ArrayNode jsonArray = mapper.createArrayNode();
+        for (EquipoImagenologia eqp : coleEqpIMG) {
+             ObjectNode ON = mapper.createObjectNode(); 
+            ON.put("nSerie", eqp.getNSerie());
+            ON.put("nombreEqp", eqp.getNombre());
+            ON.put("marcaEqp", eqp.getMarca());
+            ON.put("modeloEqp", eqp.getModelo());
+            ON.put("modalidaEqp", eqp.getModalidad());
+            ON.put("idArea", eqp.getAreaDeServicioidArea().getIdArea());
+            ON.put("nomArea", eqp.getAreaDeServicioidArea().getNombre());
+            ON.put("zEdo", eqp.getEstado());
+            //ON.put("fInst", eqp.getFechaInstalacion().toString());
+            Date  fecha=eqp.getFechaInstalacion();
+            if(fecha ==null){
+                ON.put("fInst", "");
+            }else{
+                String feform=toDateFormat(fecha,"yyyy-MM-dd");              
+                ON.put("fInst",feform); //Ojo con los nulos.
+            }
+            jsonArray.add(ON);
+        }  
+        
+        System.out.println("Llega al final de consultar todos");
+        
+        System.out.println(jsonArray);
+        return jsonArray;     
+        
+
+        
+        }
+       
+    }

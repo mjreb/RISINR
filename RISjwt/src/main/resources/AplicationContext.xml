@@ -9,7 +9,8 @@
  <bean id="StudyRequestManager" class="com.RIS.MVC.model.DAOSpecialization.StudyRequestManager"/>
  <bean id="StudiesManager" class="com.RIS.MVC.model.DAOSpecialization.StudiesManager"/>
  <bean id="DeviceManager" class="com.RIS.MVC.model.DAOSpecialization.DeviceManager"/> 
- <bean id="EquipoImagenologiaManager" class="com.RIS.MVC.model.DAOSpecialization.EquipoImagenologiaManager"/> 
+ 
+ <!--<bean id="EquipoImagenologiaManager" class="com.RIS.MVC.model.DAOSpecialization.EquipoImagenologiaManager"/> /-->
  
  <!--bean id="StudiesManager"    class="com.RIS.MVC.model.DAOSpecialization.Studies"/-->
  

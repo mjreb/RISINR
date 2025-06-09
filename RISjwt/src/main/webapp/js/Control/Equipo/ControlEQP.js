@@ -1,4 +1,5 @@
 var uriserv = "/RISSERVER/rest/USRSesionRST";
+var uriserv2 = "/RISSERVER/rest/EquipoImagenlogia";
 
 function activaBotonesEQP(table, bandera) {
     //bandera: [true,false]
@@ -125,8 +126,8 @@ function readTblsEQP() {
     var jsonData = {"nombre": "*"};
     var getEquipoimg = postRestService(uriserv + "/EquipoIMGEntity/ReadAll", jsonData);
     $.when(getEquipoimg.done(function (data) {
-        var array = convertTojsonArray(data[0]);
-        UpdateTableRows(tabladatos, array);
+        // var array = convertTojsonArray(data[0]);
+        UpdateTableRows(tabladatos, data);
         tableRowColorCellSelectionKlib(tabladatos);
         hideTableColumns(tabladatos, colocultas); //ocultar columnas (medico, idpac) 
         addRadioButtonColumnPKTBL(tabladatos, columnaedicion, coleditar, roweditar, actionListener, columnaPK); //columna k con radiobutton y acctionlistne                     
