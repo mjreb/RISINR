@@ -1,4 +1,5 @@
 var uriserv = "/RISSERVER/rest/USRSesionRST";
+var uriserv2 = "/RISSERVER/rest/EquipoImagenologia";
 
 function activaBotonesEQP(table, bandera) {
     //bandera: [true,false]
@@ -123,7 +124,7 @@ function readTblsEQP() {
     var cabecerapac = ["Serie", "Nombre", "Marca", "Modelo", "Modalida", "Id_area", "Área", "Estado","Fecha Instalación"];
     CreateTableFromJSON(divtable, tabladatos, cabecerapac); //parametros referencia div, nombre tabla , cabecera
     var jsonData = {"nombre": "*"};
-    var getEquipoimg = postRestService(uriserv + "/EquipoIMGEntity/ReadAll", jsonData);
+    var getEquipoimg = postRestService(uriserv2 + "/EquipoIMGEntity/ReadAll", jsonData);
     $.when(getEquipoimg.done(function (data) {
         var array = convertTojsonArray(data[0]);
         UpdateTableRows(tabladatos, array);

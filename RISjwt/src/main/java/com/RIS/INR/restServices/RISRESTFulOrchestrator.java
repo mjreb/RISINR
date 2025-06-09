@@ -373,8 +373,9 @@ public class RISRESTFulOrchestrator {
         System.out.println("Equipos img");
         ObjectMapper mapper = new ObjectMapper();
         ArrayNode jsonArray = mapper.createArrayNode();  
-        EquipoImagenologiaManager EqIMGmanager = new EquipoImagenologiaManager();
-        EqIMGmanager.setEntityManager(sm.getEntityManager());
+        EquipoImagenologiaManager EqIMGmanager = (EquipoImagenologiaManager) sm.getServicio("EquipoImagenologiaManager");  // Id po
+        //EquipoImagenologiaManager EqIMGmanager = new EquipoImagenologiaManager();
+        //EqIMGmanager.setEntityManager(sm.getEntityManager());
         JSONArray datoseqp=null;
         switch (operacion) {
             case "ReadAll": 

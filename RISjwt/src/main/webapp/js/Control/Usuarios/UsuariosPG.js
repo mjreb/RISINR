@@ -141,7 +141,8 @@ function postRestService(urlser, jsonData) {
         url: urlser,
         type: 'POST', // Tipo de envio 
         dataType: 'json', //Tipo de Respuesta
-        data: jsonData //datos a enviar
+        data : jsonData
+        //data: JSON.stringify(jsonData) //datos a enviar
     }).done(function (data, textStatus, jqXHR) {
         //console.log(data);
     }).fail(function (jqXHR, textStatus, errorThrown) {
