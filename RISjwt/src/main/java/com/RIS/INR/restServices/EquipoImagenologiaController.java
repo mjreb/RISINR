@@ -9,6 +9,7 @@ import com.RIS.MVC.model.daoInterface.ServicesManager;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
+import java.math.BigDecimal;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -33,6 +34,7 @@ public class EquipoImagenologiaController {
     public EquipoImagenologiaController() {
         this.servicesManager = new ServicesManager("AplicationContext.xml"); // Nueva instancia por sesión  
         this.equipoManager = (EquipoImagenologiaManager) servicesManager.getServicio("EquipoImagenologiaManager");  // Id por el servicio ya dado de alta en el aplicaction context
+        equipoManager.setEntityManager(servicesManager.getEntityManager());       
     }
 
     
@@ -57,14 +59,15 @@ public class EquipoImagenologiaController {
             
             ObjectMapper mapper = new ObjectMapper();
             String nombre=formParams.getFirst("nombre");
-            JSONArray jsonArray = null;
-            
+            ArrayNode ArrayNode = mapper.createArrayNode();
+            JSONArray jsonArray = null; 
             System.out.println("LLEGA AL EQUIPO IMAGENOLOGIA");
             switch (operacion) {
                 case "ReadAll": 
                     System.out.println("LLEGO ANTES E LA PERSISTENCIA");
                    try{
                        jsonArray = equipoManager.getAllEquipoImagenologia(); 
+                       ArrayNode.addPOJO(jsonArray);
                        
                    }catch(Exception e){
                        e.printStackTrace(); // Esto te imprimirá la excepción en el servidor
@@ -77,7 +80,7 @@ public class EquipoImagenologiaController {
 
             }
             
-            return Response.status(Response.Status.OK).entity(jsonArray.toString()).build();
+            return Response.status(Response.Status.OK).entity(ArrayNode.toString()).build();
         
         }catch(Exception e){
             return Response.status(500)         // HTTP 500 para errores inesperados
